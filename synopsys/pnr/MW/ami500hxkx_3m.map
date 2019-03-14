@@ -1,0 +1,15 @@
+conducting_layers
+  poly          poly
+  metal1        metal1
+  metal2        metal2
+  metal3        metal3
+
+via_layers
+  polyCont      polyCont
+  via1          via1
+  via2          via2
+
+marker_layers
+
+remove_layers
+

@@ -1,0 +1,29 @@
+*
+ vdd! 20
+ gnd! 36
+pad_gnd
+ vdd! 20
+ gnd! 36
+pad_space27
+ vdd! 20
+ gnd! 36
+pad_space43_2
+ vdd! 20
+ gnd! 36
+pad_space78_3
+ vdd! 20
+ gnd! 36
+pad_bidirhe
+ pad 134217732
+ vdd! 20
+ EN 1
+ DataIn 2
+ DataOut 1
+ gnd! 36
+ DataInB 2
+pad_vdd
+ vdd! 20
+ gnd! 36
+Pad_Corner_New
+ vdd! 20
+ gnd! 36

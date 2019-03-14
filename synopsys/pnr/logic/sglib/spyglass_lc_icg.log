@@ -1,0 +1,161 @@
+SpyGlass run started at 02:14:29 PM on Sep 09 2015
+
+SpyGlass Library Compiler(R) - Version 5.5.0.3
+Last compiled on Aug 14 2015
+
+All Rights Reserved. Use, disclosure or duplication
+without prior written permission of Atrenta Inc. is prohibited.
+Technical support: email support@atrenta.com.
+
+
+Running SpyGlass 64-bit Executable: /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/obj/check.Linux4
+Loading Policy: spyglass (Version: 5.5.0) from path: /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/policies/spyglass
+Loading Shared library libspyglassrules-Linux4.spyso from /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/lib/libspyglassrules-Linux4.spyso 
+Loading Shared library librmerules-Linux4.spyso from /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/lib/librmerules-Linux4.spyso 
+##build_id : 5.5.0.3
+##system   : Linux igcaew002 2.6.32-358.el6.x86_64 #1 SMP Tue Jan 29 11:47:41 EST 2013 x86_64
+##cwd      : /slowfs/cae171/ronaldv/from_cae1107/CD/kit_v1.2/ON.PDK/sample/logic/sglib
+##lang     : Verilog+VHDL
+##args     : -mSpyGlass::Compatibility::v2_7_3 \
+             -lib WORK WORK \
+             -gateslib './icg.lib' \
+             --libcomp_mode \
+             -include_opt_data \
+             -64bit 
+##verbosity level   : 2
+##exact cmdline arg : -mSpyGlass::Compatibility::v2_7_3 --libcomp_mode -gateslib ./icg.lib -include_opt_data
+##spyglass_run.csh begins :
+;	cd /slowfs/cae171/ronaldv/from_cae1107/CD/kit_v1.2/ON.PDK/sample/logic/sglib
+;	setenv ATRENTA_LICENSE_FILE 1790@us01-lic20:1790@us01misclmd1:1790@us01misclmd2
+;	/global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/bin/spyglass  -mSpyGlass::Compatibility::v2_7_3 --libcomp_mode -gateslib ./icg.lib -include_opt_data
+##spyglass_run.csh ends
+##files    :
+ Analyzing SLF file: ./icg.lib ....
+   Processing library: 'icg4utah' .... done
+
+INFO [76]    Using `WORK/64' as the Work Directory for 64bit precompiled dump.
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Analysis started: 56 sec, 249768 KB, 604060 KB
+##SGDEBUG [BENCHMARK_INCR]: Analysis started: 56 sec, 249768 KB, 604060 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Analysis finished: 56 sec, 317636 KB, 672472 KB
+##SGDEBUG [BENCHMARK_INCR]: Analysis finished: 0 sec, 67868 KB, 68412 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Elaboration started: 56 sec, 317637 KB, 672472 KB
+##SGDEBUG [BENCHMARK_INCR]: Elaboration started: 0 sec, 1 KB, 0 KB
+ Elaborating Top Verilog Design Unit 'internally_generated_spyglass_library_compiler_top_0' ..... done
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Elaboration finished: 56 sec, 383536 KB, 738264 KB
+##SGDEBUG [BENCHMARK_INCR]: Elaboration finished: 0 sec, 65899 KB, 65792 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: RTL Semantic Checker started: 56 sec, 383536 KB, 738264 KB
+##SGDEBUG [BENCHMARK_INCR]: RTL Semantic Checker started: 0 sec, 0 KB, 0 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: RTL Semantic Checker finished: 56 sec, 383564 KB, 738264 KB
+##SGDEBUG [BENCHMARK_INCR]: RTL Semantic Checker finished: 0 sec, 28 KB, 0 KB
+
+##SGDEBUG [BENCHMARK_DATA]: Number of RTL Design Units = 5
+##SGDEBUG: RTL statistics for Verilog design units:
+##SGDEBUG[BENCHMARK_DATA]: RTL Ports = 15 15 0
+##SGDEBUG[BENCHMARK_DATA]: RTL Insts = 10
+##SGDEBUG[BENCHMARK_DATA]: RTL Nets = 20 20 0
+##SGDEBUG[BENCHMARK_DATA]: RTL Terms = 31 25 0
+
+##SGDEBUG: NOTE: Following estimated data is applicable for structural designs only.
+##SGDEBUG:     In case of RTL designs, this data may differ significantly from the actual figure.
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Insts = 6
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Nets = 20
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Terms = 21
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Paths = 1
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Synthesis started: 57 sec, 384875 KB, 738264 KB
+##SGDEBUG [BENCHMARK_INCR]: Synthesis started: 1 sec, 1311 KB, 0 KB
+ Synthesizing Library Cells specified through SgLib  ......
+ Synthesis of Library Cells specified through SgLib completed 
+ Synthesizing module: internally_generated_spyglass_library_compiler_top_0 (elaborated name: internally_generated_spyglass_library_compiler_top_0) ... (Module 1 of total 1)  done 
+     (Memory Used = 899.6K(incr), 320449.1K(tot), Cpu Time = 0.01s(incr))
+ Synthesis completed.
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Synthesis completed: 57 sec, 320623 KB, 677656 KB
+##SGDEBUG [BENCHMARK_INCR]: Synthesis completed: 0 sec, -64252 KB, -60608 KB
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Modules = 5
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Instances = 13
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Nets = 37
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Terminals = 42
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Instances per Module (max and avg) = 6, 2
+##SGDEBUG [BENCHMARK_ABSOLUTE]: VS rule checking finished...: 57 sec, 320626 KB, 677656 KB
+##SGDEBUG [BENCHMARK_INCR]: VS rule checking finished...: 0 sec, 3 KB, 0 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Elab View Deletion Finished: 57 sec, 254724 KB, 611864 KB
+##SGDEBUG [BENCHMARK_INCR]: Elab View Deletion Finished: 0 sec, -65902 KB, -65792 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: After deleting RTL view: 57 sec, 186952 KB, 544536 KB
+##SGDEBUG [BENCHMARK_INCR]: After deleting RTL view: 0 sec, -67772 KB, -67328 KB
+
+Generating data for Console...
+##SGDEBUG [PEAK_MEMORY]: 738264 KB for entire run at 'Elaboration finished' stage
+##SGDEBUG [VMPEAK_MEMORY]: 874516 KB for entire run
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Rule checking finished: 57 sec, 185917 KB, 544312 KB
+##SGDEBUG [BENCHMARK_INCR]: Rule checking finished: 0 sec, -1035 KB, -224 KB
+
+
+=====================================================================================
+							Rule Parameter Table
+=====================================================================================
+
+	PARAMETER-NAME                                     VALUE
+-------------------------------------------------------------------------------------
+=====================================================================================
+
+
+
+=====================================================================================
+                               Rule Status Table
+
+ RULE-NAME                      POLICY-NAME     ENABLED VIOL-CNT RULE-TYPE   ERROR-MSG         
+=====================================================================================
+ LIBWRN_36                      SpyGlass        Yes            1 SETUP          -               
+-------------------------------------------------------------------------------------
+Note: VSDU type of rules (as seen in the above table) are not run on
+      unsynthesized modules reported by 'ErrorAnalyzeBBox/InfoAnalyzeBBox' messages
+      (Please see messages starting with keyword 'UnsynthesizedDU')
+
+
+---------------------------------------------------------------------------------------------
+Results Summary:
+---------------------------------------------------------------------------------------------
+   Command-line read  :      0 error,      0 warning,      0 information message 
+   Design Read        :      0 error,      1 warning,      0 information message 
+   Blackbox Resolution:      0 error,      0 warning,      0 information message 
+   SGDC Checks        :      0 error,      0 warning,      0 information message 
+   -------------------------------------------------------------------------------------
+   Total              :      0 error,      1 warning,      0 information message 
+
+  Total Number of Messages     :         1
+  Number of Messages Filtered  :         0
+  Number of Messages Displayed :         1
+
+---------------------------------------------------------------------------------------------
+
+
+===============================================================================
+ CELLNAME             Cell Interface View  Function View
+===============================================================================
+ AND2X1                    Yes              Yes [LIB: icg.lib 109 lib2rtl]
+ ICG_DYN                   Yes              Yes [LIB: icg.lib 354 lib2rtl]
+ OR2X1                     Yes              Yes [LIB: icg.lib 660 lib2rtl]
+===============================================================================
+
+##status : SpyGlass Library Compilation Complete.
+
+-------------------------------------------------------------------------
+Library Compiler Summary Report:
+-------------------------------------------------------------------------
+
+        Total Cells Read (./icg.lib)                             3
+        Functional view imported from user-supplied HDL          0
+        Functional view translated from .lib(s)                  3
+        Functional view not created                              0
+
+        Compiled Library Output is ./icg.sglib
+
+-------------------------------------------------------------------------
+
+
+Generating moresimple report from './spyglass_lc_icg.vdb' to './spyglass_lc_icg_reports/moresimple.rpt' ....
+
+Generating no_msg_reporting_rules report from './spyglass_lc_icg.vdb' to './spyglass_lc_icg_reports/no_msg_reporting_rules.rpt' ....
+
+Policy specific data (reports) are present in the directory './spyglass_lc_icg_reports'.
+
+SpyGlass Library Compilation Complete.

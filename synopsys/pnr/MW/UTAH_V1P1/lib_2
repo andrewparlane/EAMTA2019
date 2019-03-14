@@ -1,0 +1,223 @@
+*
+ vdd! 20
+ gnd! 36
+AOI21X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ C 1
+ Y 2
+FILL4
+ vdd! 20
+ gnd! 36
+NOR2X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ Y 2
+NOR3X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ C 1
+ Y 2
+ENINVX1
+ vdd! 20
+ gnd! 36
+ A 1
+ EN 1
+ Y 2
+DCBNX1
+ vdd! 20
+ gnd! 36
+ CLK 1
+ CLR 1
+ D 1
+ Q 2
+ QB 2
+INVX1
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+AOI22X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ C 1
+ D 1
+ Y 2
+NAND2X2
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ Y 2
+TIEHI
+ vdd! 20
+ gnd! 36
+ Y 2
+INVX2
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+unitTile
+ vdd! 20
+ gnd! 36
+MUX2NX1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ S 1
+ Y 2
+INVX8
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+INVX16
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+DCNX1
+ vdd! 20
+ gnd! 36
+ CLK 1
+ CLR 1
+ D 1
+ Q 2
+BUFX2
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+NOR2X2
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ Y 2
+TIELO
+ vdd! 20
+ gnd! 36
+ Y 2
+BUFX8
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+XOR2X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ Y 2
+ENINVX2
+ vdd! 20
+ gnd! 36
+ A 1
+ EN 1
+ Y 2
+DCBX1
+ vdd! 20
+ gnd! 36
+ CLK 1
+ CLR 1
+ D 1
+ Q 2
+ QB 2
+AND3X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ C 1
+ Y 2
+FILL
+ vdd! 20
+ gnd! 36
+FILL2
+ vdd! 20
+ gnd! 36
+XNOR2X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ Y 2
+DCX1
+ vdd! 20
+ gnd! 36
+ CLK 1
+ CLR 1
+ D 1
+ Q 2
+INVX4
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+LCNX1
+ vdd! 20
+ gnd! 36
+ CLR 1
+ D 1
+ G 1
+ Q 2
+MUX2X2
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ S 1
+ Y 2
+FILL8
+ vdd! 20
+ gnd! 36
+NAND2X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ Y 2
+OAI21X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ C 1
+ Y 2
+BUFX4
+ vdd! 20
+ gnd! 36
+ A 1
+ Y 2
+NAND3X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ C 1
+ Y 2
+LCX1
+ vdd! 20
+ gnd! 36
+ CLR 1
+ D 1
+ G 1
+ Q 2
+OAI22X1
+ vdd! 20
+ gnd! 36
+ A 1
+ B 1
+ C 1
+ D 1
+ Y 2

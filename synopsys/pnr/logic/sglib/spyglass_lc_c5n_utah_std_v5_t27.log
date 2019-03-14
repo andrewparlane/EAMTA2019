@@ -1,0 +1,191 @@
+SpyGlass run started at 02:08:29 PM on Sep 09 2015
+
+SpyGlass Library Compiler(R) - Version 5.5.0.3
+Last compiled on Aug 14 2015
+
+All Rights Reserved. Use, disclosure or duplication
+without prior written permission of Atrenta Inc. is prohibited.
+Technical support: email support@atrenta.com.
+
+
+Running SpyGlass 64-bit Executable: /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/obj/check.Linux4
+Loading Policy: spyglass (Version: 5.5.0) from path: /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/policies/spyglass
+Loading Shared library libspyglassrules-Linux4.spyso from /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/lib/libspyglassrules-Linux4.spyso 
+Loading Shared library librmerules-Linux4.spyso from /global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/lib/librmerules-Linux4.spyso 
+##build_id : 5.5.0.3
+##system   : Linux igcaew002 2.6.32-358.el6.x86_64 #1 SMP Tue Jan 29 11:47:41 EST 2013 x86_64
+##cwd      : /slowfs/cae171/ronaldv/from_cae1107/CD/kit_v1.2/ON.PDK/sample/logic/sglib
+##lang     : Verilog+VHDL
+##args     : -mSpyGlass::Compatibility::v2_7_3 \
+             -lib WORK WORK \
+             -gateslib './c5n_utah_std_v5_t27.lib' \
+             --libcomp_mode \
+             -include_opt_data \
+             -64bit 
+##verbosity level   : 2
+##exact cmdline arg : -mSpyGlass::Compatibility::v2_7_3 --libcomp_mode -gateslib ./c5n_utah_std_v5_t27.lib -include_opt_data
+##spyglass_run.csh begins :
+;	cd /slowfs/cae171/ronaldv/from_cae1107/CD/kit_v1.2/ON.PDK/sample/logic/sglib
+;	setenv ATRENTA_LICENSE_FILE 1790@us01-lic20:1790@us01misclmd1:1790@us01misclmd2
+;	/global/snps_apps/spyglass_5.5.0.3/SpyGlass-5.5.0.3/SPYGLASS_HOME/bin/spyglass  -mSpyGlass::Compatibility::v2_7_3 --libcomp_mode -gateslib ./c5n_utah_std_v5_t27.lib -include_opt_data
+##spyglass_run.csh ends
+##files    :
+ Analyzing SLF file: ./c5n_utah_std_v5_t27.lib ....
+   Processing library: 'c5n_utah_std_v5_t27' .... done
+
+INFO [76]    Using `WORK/64' as the Work Directory for 64bit precompiled dump.
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Analysis started: 57 sec, 250346 KB, 605136 KB
+##SGDEBUG [BENCHMARK_INCR]: Analysis started: 57 sec, 250346 KB, 605136 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Analysis finished: 57 sec, 318253 KB, 673244 KB
+##SGDEBUG [BENCHMARK_INCR]: Analysis finished: 0 sec, 67907 KB, 68108 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Elaboration started: 57 sec, 318254 KB, 673244 KB
+##SGDEBUG [BENCHMARK_INCR]: Elaboration started: 0 sec, 1 KB, 0 KB
+ Elaborating Top Verilog Design Unit 'internally_generated_spyglass_library_compiler_top_0' ..... done
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Elaboration finished: 57 sec, 384158 KB, 739036 KB
+##SGDEBUG [BENCHMARK_INCR]: Elaboration finished: 0 sec, 65904 KB, 65792 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: RTL Semantic Checker started: 57 sec, 384158 KB, 739036 KB
+##SGDEBUG [BENCHMARK_INCR]: RTL Semantic Checker started: 0 sec, 0 KB, 0 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: RTL Semantic Checker finished: 57 sec, 384190 KB, 739036 KB
+##SGDEBUG [BENCHMARK_INCR]: RTL Semantic Checker finished: 0 sec, 32 KB, 0 KB
+
+##SGDEBUG [BENCHMARK_DATA]: Number of RTL Design Units = 34
+##SGDEBUG: RTL statistics for Verilog design units:
+##SGDEBUG[BENCHMARK_DATA]: RTL Ports = 106 106 0
+##SGDEBUG[BENCHMARK_DATA]: RTL Insts = 103
+##SGDEBUG[BENCHMARK_DATA]: RTL Nets = 224 224 0
+##SGDEBUG[BENCHMARK_DATA]: RTL Terms = 286 212 0
+
+##SGDEBUG: NOTE: Following estimated data is applicable for structural designs only.
+##SGDEBUG:     In case of RTL designs, this data may differ significantly from the actual figure.
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Insts = 66
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Nets = 212
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Terms = 212
+##SGDEBUG[BENCHMARK_DATA]: Estimated Flat Paths = 1
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Synthesis started: 57 sec, 385591 KB, 739036 KB
+##SGDEBUG [BENCHMARK_INCR]: Synthesis started: 0 sec, 1401 KB, 0 KB
+ Synthesizing Library Cells specified through SgLib  ......
+ Synthesis of Library Cells specified through SgLib completed 
+ Synthesizing module: internally_generated_spyglass_library_compiler_top_0 (elaborated name: internally_generated_spyglass_library_compiler_top_0) ... (Module 1 of total 1)  done 
+     (Memory Used = 908.3K(incr), 321182.3K(tot), Cpu Time = 0.04s(incr))
+ Synthesis completed.
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Synthesis completed: 57 sec, 321584 KB, 678940 KB
+##SGDEBUG [BENCHMARK_INCR]: Synthesis completed: 0 sec, -64007 KB, -60096 KB
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Modules = 32
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Instances = 156
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Nets = 375
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Terminals = 434
+##SGDEBUG [BENCHMARK_DATA]: Number of NOM Instances per Module (max and avg) = 66, 4
+##SGDEBUG [BENCHMARK_ABSOLUTE]: VS rule checking finished...: 57 sec, 321594 KB, 678940 KB
+##SGDEBUG [BENCHMARK_INCR]: VS rule checking finished...: 0 sec, 10 KB, 0 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Elab View Deletion Finished: 57 sec, 255687 KB, 613148 KB
+##SGDEBUG [BENCHMARK_INCR]: Elab View Deletion Finished: 0 sec, -65907 KB, -65792 KB
+##SGDEBUG [BENCHMARK_ABSOLUTE]: After deleting RTL view: 57 sec, 187655 KB, 545564 KB
+##SGDEBUG [BENCHMARK_INCR]: After deleting RTL view: 0 sec, -68032 KB, -67584 KB
+
+Generating data for Console...
+##SGDEBUG [PEAK_MEMORY]: 739036 KB for entire run at 'Elaboration finished' stage
+##SGDEBUG [VMPEAK_MEMORY]: 875768 KB for entire run
+##SGDEBUG [BENCHMARK_ABSOLUTE]: Rule checking finished: 57 sec, 186660 KB, 545340 KB
+##SGDEBUG [BENCHMARK_INCR]: Rule checking finished: 0 sec, -995 KB, -224 KB
+
+
+=====================================================================================
+							Rule Parameter Table
+=====================================================================================
+
+	PARAMETER-NAME                                     VALUE
+-------------------------------------------------------------------------------------
+=====================================================================================
+
+
+
+=====================================================================================
+                               Rule Status Table
+
+ RULE-NAME                      POLICY-NAME     ENABLED VIOL-CNT RULE-TYPE   ERROR-MSG         
+=====================================================================================
+ LIBWRN_36                      SpyGlass        Yes            1 SETUP          -               
+-------------------------------------------------------------------------------------
+Note: VSDU type of rules (as seen in the above table) are not run on
+      unsynthesized modules reported by 'ErrorAnalyzeBBox/InfoAnalyzeBBox' messages
+      (Please see messages starting with keyword 'UnsynthesizedDU')
+
+
+---------------------------------------------------------------------------------------------
+Results Summary:
+---------------------------------------------------------------------------------------------
+   Command-line read  :      0 error,      0 warning,      0 information message 
+   Design Read        :      0 error,      1 warning,      0 information message 
+   Blackbox Resolution:      0 error,      0 warning,      0 information message 
+   SGDC Checks        :      0 error,      0 warning,      0 information message 
+   -------------------------------------------------------------------------------------
+   Total              :      0 error,      1 warning,      0 information message 
+
+  Total Number of Messages     :         1
+  Number of Messages Filtered  :         0
+  Number of Messages Displayed :         1
+
+---------------------------------------------------------------------------------------------
+
+
+===============================================================================
+ CELLNAME             Cell Interface View  Function View
+===============================================================================
+ AND3X1                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 11873 lib2rtl]
+ AOI21X1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 13013 lib2rtl]
+ AOI22X1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 14075 lib2rtl]
+ BUFX2                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 15907 lib2rtl]
+ BUFX4                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 16209 lib2rtl]
+ BUFX8                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 16511 lib2rtl]
+ DCBNX1                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 16813 lib2rtl]
+ DCBX1                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 18361 lib2rtl]
+ DCNX1                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 19908 lib2rtl]
+ DCX1                      Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 21075 lib2rtl]
+ ENINVX1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 22242 lib2rtl]
+ ENINVX2                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 22818 lib2rtl]
+ INVX1                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 23396 lib2rtl]
+ INVX16                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 23685 lib2rtl]
+ INVX2                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 23974 lib2rtl]
+ INVX4                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 24263 lib2rtl]
+ INVX8                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 24552 lib2rtl]
+ LCNX1                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 24841 lib2rtl]
+ LCX1                      Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 26155 lib2rtl]
+ MUX2NX1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 27465 lib2rtl]
+ MUX2X2                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 28501 lib2rtl]
+ NAND2X1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 29524 lib2rtl]
+ NAND2X2                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 30154 lib2rtl]
+ NAND3X1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 30784 lib2rtl]
+ NOR2X1                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 31937 lib2rtl]
+ NOR2X2                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 32554 lib2rtl]
+ NOR3X1                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 33171 lib2rtl]
+ OAI21X1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 34311 lib2rtl]
+ OAI22X1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 35386 lib2rtl]
+ TIEHI                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 37218 lib2rtl]
+ TIELO                     Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 37247 lib2rtl]
+ XNOR2X1                   Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 37276 lib2rtl]
+ XOR2X1                    Yes              Yes [LIB: c5n_utah_std_v5_t27.lib 37815 lib2rtl]
+===============================================================================
+
+##status : SpyGlass Library Compilation Complete.
+
+-------------------------------------------------------------------------
+Library Compiler Summary Report:
+-------------------------------------------------------------------------
+
+        Total Cells Read (./c5n_utah_std_v5_t27.lib)            33
+        Functional view imported from user-supplied HDL          0
+        Functional view translated from .lib(s)                 33
+        Functional view not created                              0
+
+        Compiled Library Output is ./c5n_utah_std_v5_t27.sglib
+
+-------------------------------------------------------------------------
+
+
+Generating moresimple report from './spyglass_lc_c5n_utah_std_v5_t27.vdb' to './spyglass_lc_c5n_utah_std_v5_t27_reports/moresimple.rpt' ....
+
+Generating no_msg_reporting_rules report from './spyglass_lc_c5n_utah_std_v5_t27.vdb' to './spyglass_lc_c5n_utah_std_v5_t27_reports/no_msg_reporting_rules.rpt' ....
+
+Policy specific data (reports) are present in the directory './spyglass_lc_c5n_utah_std_v5_t27_reports'.
+
+SpyGlass Library Compilation Complete.
