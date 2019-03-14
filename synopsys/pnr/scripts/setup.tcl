@@ -1,5 +1,5 @@
 set MW_REF_PATH "../MW"
-set search_path ". ../ ../MW/ ../logic/ ../scripts/ ../inputs/"
+set search_path ". ../ ../MW/ ../../libs/ ../scripts/ ../inputs/"
 
 set target_library "c5n_utah_std_v5_t27.db icg4utah.db UofU_Digital_v1_2.db"
 set synthetic_library "dw_foundation.sldb"
