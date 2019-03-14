@@ -1,0 +1,59 @@
+configure tech
+    set search_path ". ./libs ..."
+    set target_library "abc.db"
+    set link_library "* $target_library def.db"
+read design
+    analyze -format verilog {abc.v def.v}
+    elaborate top -parameters "WIDTH=8, ...=..."
+    link;
+read constraints
+    create_clock -period 2 [get_ports Clk]
+    set_clock_uncertainty -setup Tu [get_clocks Clk]
+        maximum difference between two parts of the clock tree (skew)
+        -setup means this is for the setup time, the launching clock
+        has no uncertainty and the latching clock could come Tu earlier
+    set_clock_transisition -max T [get_clocks Clk]
+        rise / fall times
+    set_clock_latency -source T [get_clocks Clk]
+        max latency from clock source to port Clk (from create_clock)
+    set_input_delay -max T -clock Clk [get_ports A]
+    set_output_delay -max T -clock Clk [get_ports B]
+    set_load -max C [get_ports B]
+        output load
+    set_input_transition -max T [get_ports A]
+synth
+    compile / compile_ultra
+        dc_shell> man compile_ultra # for all the options
+analyze
+    analyze_datapath_extractions
+    report_resources -hier
+    report_qor
+    report_area
+    report_power
+    report_timing
+    report_clock
+    report_constraint
+
+write out design
+    write_file -format ddc -heigharchy -out abc.ddc
+    write_file -format verilog -heigharchy -out abc.v
+    write_sdc constraints.sdc
+
+useful commands:
+    get_pins
+    get_ports
+    set_load 5 [get_ports abc_def*]
+    filter_collection [get_cells *] "ref_name =~ AN*"
+    get_cells * -filter "ref_name =~ AN*"
+    start_gui
+
+    ports have:
+        load
+        direction
+        ...
+
+    paths
+        input path
+        reg to reg
+        output path
+        input to output

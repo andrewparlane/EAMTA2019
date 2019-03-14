@@ -1,0 +1,68 @@
+data setup
+    create_mw_lib design_lib_orca -open -technology abc.tf -mw_reference_library "MW/... MW/..."
+    set_tlu_plus_files -max_tplus ...
+    check_tlu_plus_files
+    import_designs design.v -format verilog ...
+    read_sdc constrainst.sdc
+    ..?
+    link
+    check_timing
+design planning Floorplan + Powerplan
+    create starting floorplan
+        create_cell #for Vss and Vdd
+        create_pad_physical_constraint ...
+        create_floorplan ...
+        insert_pad_filler_cells
+        derive_pg_connections   # has to be called every time a cell is inserted
+        create_pad_rings
+        set_ignored_layers -max_routing_layer_M7
+    Power Network Synthesis
+        create_rectlinear_rings
+        create_power_straps
+        preroute_?
+        preroute_standard_cells
+    Write DEF file
+        write_def
+    check_physical_constraints
+placement
+    set_dont_touch_placement [all_macro_cells]
+    check_physical_design -stage_pre_place_opts
+    check_physical_constraints
+    save_mw_cell -as ...
+    place_opt ...
+    if it's congested / timing violations then debug
+        and stuff.
+clock tree synthesis
+    set_clock_tree_options
+    remove_clock_uncertainty ...
+    clock_opt -no_clock_route -only_cts
+    clock_opt -no_clock_route -only_psyn
+    set_fix_hold [all_clocks]
+    extract_rc
+    if errors
+        optimize_clock_tree
+    route_zrt_group -all_clock_nets
+    report_clock_tree
+    report_clock_timing
+Routing
+    set_route_zrt_*_options
+    report_route_zrt_*_options
+    route_opt -initial_route_only
+    route_opt -skip_initial_route -effort medium power
+    verify_zrt_route
+    verify_lvs -ignore_short -ignore_min_area
+chip finishing
+    spread_zrt_wires
+    widden_zrt_wires
+    route_opt -incremental -sizing
+    insert_metal_filler
+    IC Validator
+    Formality
+    PrimeTime and SI verification
+    set_write_stream_options ...
+    ...
+
+
+regularly save design with new names
+    save_mw_cell -as orca_planned
+    open_mv_lib orca_planned
