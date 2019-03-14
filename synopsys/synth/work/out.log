@@ -22,10 +22,10 @@ Initializing...
 Initializing gui preferences from file  /home/eamta7/.synopsys_dv_prefs.tcl
 set search_path ". ../ ../../../rtl ../../libs"
 . ../ ../../../rtl ../../libs
-set target_library "nldm_op_cond_typ.db"
-nldm_op_cond_typ.db
+set target_library "UofU_Digital_v1_2.db c5n_utah_std_v5_t27.db"
+UofU_Digital_v1_2.db c5n_utah_std_v5_t27.db
 set link_library "* $target_library"
-* nldm_op_cond_typ.db
+* UofU_Digital_v1_2.db c5n_utah_std_v5_t27.db
 analyze -format sverilog {pkg/operation_pkg.sv ALU.sv Control.sv Mux4.sv OneBitAdder.sv RegisterBank.sv Top.sv}
 Running PRESTO HDLC
 Compiling source file ../../../rtl/pkg/operation_pkg.sv
@@ -36,12 +36,15 @@ Compiling source file ../../../rtl/OneBitAdder.sv
 Compiling source file ../../../rtl/RegisterBank.sv
 Compiling source file ../../../rtl/Top.sv
 Presto compilation completed successfully.
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db'
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db'
+Information: Using CCS timing libraries. (TIM-024)
 1
 elaborate Top -parameters "WIDTH=16"
 Loading db file '/usr/synopsys/syn/M-2016.12-SP5-5/libraries/syn/gtech.db'
 Loading db file '/usr/synopsys/syn/M-2016.12-SP5-5/libraries/syn/standard.sldb'
-  Loading link library 'op_cond_typ'
+  Loading link library 'UofU_Digital_v1_2'
+  Loading link library 'c5n_utah_std_v5_t27'
   Loading link library 'gtech'
 Running PRESTO HDLC
 Presto compilation completed successfully.
@@ -149,8 +152,9 @@ link
   Linking design 'Top_WIDTH16'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  * (8 designs)               /home/eamta7/EAMTA_2019/synopsys/synth/work/Top_WIDTH16.db, etc
-  op_cond_typ (library)       /home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db
+  * (8 designs)               /home/eamta7/EAMTA2019/synopsys/synth/work/Top_WIDTH16.db, etc
+  UofU_Digital_v1_2 (library) /home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db
+  c5n_utah_std_v5_t27 (library) /home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db
 
 1
 check_design
@@ -158,7 +162,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     M-2016.12-SP5-5
-Date:        Wed Mar 13 11:01:35 2019
+Date:        Thu Mar 14 17:01:18 2019
 ****************************************
 
                    Name                                            Total
@@ -212,7 +216,7 @@ Total                  2           2
 Report : resources
 Design : Top_WIDTH16
 Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:02:21 2019
+Date   : Thu Mar 14 17:02:00 2019
 ****************************************
 
 
@@ -255,9 +259,11 @@ set_input_transition -min [expr {1*$period/100}] [remove_from_collection [all_in
 1
 set_input_transition -max [expr {10*$period/100}] [remove_from_collection [all_inputs] [get_ports clk]]
 1
-compile_ultra -no_autoungroup -gate_clock
+compile_ultra -no_autoungroup
 Information: Performing power optimization. (PWR-850)
-Alib files are up-to-date.
+Analyzing: "/home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db"
+Analyzing: "/home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db"
+Library analysis succeeded.
 Loading db file '/usr/synopsys/syn/M-2016.12-SP5-5/libraries/syn/dw_foundation.sldb'
 Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
 Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
@@ -280,12 +286,17 @@ Information: Uniquified 2 instances of design 'Mux4_WIDTH16'. (OPT-1056)
 Information: Uniquified 2 instances of design 'RegisterBank_WIDTH16'. (OPT-1056)
   Simplifying Design 'Top_WIDTH16'
 
-Loaded alib file './alib-52/nldm_op_cond_typ.db.alib'
+Loaded alib file './alib-52/UofU_Digital_v1_2.db.alib'
+Loaded alib file './alib-52/c5n_utah_std_v5_t27.db.alib'
+Warning: Operating condition typical set on design Top_WIDTH16 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+c5n_utah_std_v5_t27 is characterized. Delays may be inaccurate as a result. (OPT-998)
 Information: State dependent leakage is now switched from on to off.
 
   Beginning Pass 1 Mapping
   ------------------------
   Processing 'ALU_WIDTH16'
+Warning: The trip points for the library named c5n_utah_std_v5_t27 differ from those in the library named UofU_Digital_v1_2. (TIM-164)
 Information: Added key list 'DesignWare' to design 'ALU_WIDTH16'. (DDB-72)
  Implement Synthetic for 'ALU_WIDTH16'.
   Processing 'ALU_WIDTH16_DW_div_tc_J2_0'
@@ -298,51 +309,13 @@ Information: Added key list 'DesignWare' to design 'ALU_WIDTH16'. (DDB-72)
   Processing 'Mux4_WIDTH16_0'
   Processing 'RegisterBank_WIDTH6'
   Processing 'RegisterBank_WIDTH2'
-  Processing 'SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH32'
-  Mapping integrated clock gating circuitry
-  Processing 'SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH6'
-  Mapping integrated clock gating circuitry
-  Processing 'SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_0'
-  Mapping integrated clock gating circuitry
 
   Updating timing information
+Warning: The trip points for the library named c5n_utah_std_v5_t27 differ from those in the library named UofU_Digital_v1_2. (TIM-164)
 Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIELO' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
 Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
-Information: Skipping clock gating on design Top_WIDTH16, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW_cmp_J2_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW_div_tc_J2_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW_mult_tc_J2_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_sub_J2_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_12, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH32, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_2, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_3, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_4, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_5, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_7, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_8, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_9, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_10, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_add_J2_11, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW_inc_J2_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design ALU_WIDTH16_DW01_inc_J2_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_0, since there are no registers. (PWR-806)
-Information: Performing clock-gating on design Control. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH2. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH16_1. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH6. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH32. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH16_0. (PWR-730)
 
   Beginning Mapping Optimizations  (Ultra High effort)
   -------------------------------
@@ -484,54 +457,222 @@ Information: Performing clock-gating on design RegisterBank_WIDTH16_0. (PWR-730)
   Mapping 'ALU_WIDTH16_DW_inc_6'
   Mapping 'ALU_WIDTH16_DW_div_tc_3'
   Mapping Optimization (Phase 1)
-  Mapping Optimization (Phase 2)
-  Mapping Optimization (Phase 3)
-  Mapping Optimization (Phase 4)
-  Mapping Optimization (Phase 5)
-  Mapping Optimization (Phase 6)
-  Mapping Optimization (Phase 7)
-  Mapping Optimization (Phase 8)
-  Mapping Optimization (Phase 9)
-  Mapping Optimization (Phase 10)
-  Mapping Optimization (Phase 11)
-  Mapping Optimization (Phase 12)
-  Mapping Optimization (Phase 13)
-  Mapping Optimization (Phase 14)
-  Mapping Optimization (Phase 15)
-  Mapping Optimization (Phase 16)
-  Mapping Optimization (Phase 17)
-  Mapping Optimization (Phase 18)
-  Mapping Optimization (Phase 19)
-  Mapping Optimization (Phase 20)
-  Mapping Optimization (Phase 21)
-  Mapping Optimization (Phase 22)
-  Mapping Optimization (Phase 23)
-  Mapping Optimization (Phase 24)
-  Mapping Optimization (Phase 25)
-  Mapping Optimization (Phase 26)
-  Mapping Optimization (Phase 27)
-  Mapping Optimization (Phase 28)
-  Mapping Optimization (Phase 29)
-  Mapping Optimization (Phase 30)
-  Mapping Optimization (Phase 31)
-  Mapping Optimization (Phase 32)
-  Mapping Optimization (Phase 33)
-  Mapping Optimization (Phase 34)
-  Mapping Optimization (Phase 35)
-  Mapping Optimization (Phase 36)
-  Mapping Optimization (Phase 37)
-  Mapping Optimization (Phase 38)
-  Mapping Optimization (Phase 39)
-  Mapping Optimization (Phase 40)
-  Mapping Optimization (Phase 41)
-  Mapping Optimization (Phase 42)
-  Mapping Optimization (Phase 43)
 
   Beginning Constant Register Removal
   -----------------------------------
 
   Beginning Global Optimizations
   ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Mapping 'ALU_WIDTH16_DW01_add_114'
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:17   21805.0     10.20     314.9      22.8                            360.4085
+    0:00:22   24281.0      1.44      43.2      23.9                            403.9583
+    0:00:22   24281.0      1.44      43.2      23.9                            403.9583
+    0:00:22   24275.0      1.61      48.6      23.9                            403.8865
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:00:26   21244.0      0.00       0.0      23.4                            353.0805
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+
+
+  Beginning Design Rule Fixing  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:27   21158.0      0.00       0.0      23.3                            351.2028
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+    0:00:27   21210.0      0.00       0.0       0.0                            351.6438
+    0:00:27   21210.0      0.00       0.0       0.0                            351.6438
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:27   21210.0      0.00       0.0       0.0                            351.6438
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+    0:00:29   20105.0      0.69      17.6       0.0 aluReg/out_reg[31]/D       331.9561
+    0:00:29   20163.0      0.38       8.1       0.0                            332.8227
+    0:00:30   20388.0      0.00       0.0       0.0                            335.4987
+    0:00:30   20388.0      0.00       0.0       0.0                            335.4987
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+    0:00:30   20390.0      0.00       0.0       0.0                            335.6063
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:30   20381.0      0.00       0.0       0.0                            335.6063
+    0:00:30   19594.0      3.50     104.7       0.0                            322.7059
+    0:00:31   19761.0      0.02       0.0       0.0                            326.1255
+    0:00:31   19761.0      0.02       0.0       0.0                            326.1255
+    0:00:31   19763.0      0.00       0.0       0.0                            326.2320
+    0:00:32   19721.0      0.00       0.0       0.0                            325.3109
+    0:00:32   19721.0      0.00       0.0       0.0                            325.3109
+    0:00:32   19721.0      0.00       0.0       0.0                            325.3109
+    0:00:32   19721.0      0.00       0.0       0.0                            325.3109
+    0:00:32   19682.0      0.00       0.0       0.0                            324.4918
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db'
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+source ../reports.tcl -echo > 1_initial.log
+compile_ultra -no_autoungroup -gate_clock
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
+Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 11 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+  Simplifying Design 'Top_WIDTH16'
+
+Warning: Operating condition typical set on design Top_WIDTH16 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+c5n_utah_std_v5_t27 is characterized. Delays may be inaccurate as a result. (OPT-998)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'ALU_WIDTH16'
+  Processing 'Top_WIDTH16'
+  Processing 'RegisterBank_WIDTH32'
+  Processing 'Mux4_WIDTH16_0'
+  Processing 'Mux4_WIDTH16_1'
+  Processing 'RegisterBank_WIDTH16_1'
+  Processing 'RegisterBank_WIDTH16_0'
+  Processing 'RegisterBank_WIDTH6'
+  Processing 'Control'
+  Processing 'RegisterBank_WIDTH2'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELO' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+
+  Beginning Constant Register Removal
+  -----------------------------------
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
   Global Optimization (Phase 1)
   Global Optimization (Phase 2)
   Global Optimization (Phase 3)
@@ -573,71 +714,48 @@ Information: Performing clock-gating on design RegisterBank_WIDTH16_0. (PWR-730)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:06:13  718916.2     35.60    1118.1    1977.9                              0.2254
-    0:06:23  766749.6     21.92     697.9    1913.0                              0.2451
-    0:06:23  766749.6     21.92     697.9    1913.0                              0.2451
-    0:06:23  766896.5     21.90     697.3    1912.1                              0.2435
+    0:00:13   17959.0      9.54     252.2      22.8                            307.7990
+    0:00:16   20057.0      0.00       0.0      23.1                            344.2861
+    0:00:16   20057.0      0.00       0.0      23.1                            344.2861
+    0:00:17   20024.0      0.00       0.0      23.6                            343.8907
 
   Beginning WLM Backend Optimization
   --------------------------------------
-    0:06:27  699575.0     21.68     685.7    1850.2                              0.2251
-    0:06:27  698816.1     21.68     686.0    1847.7                              0.2245
-    0:06:27  698816.1     21.68     686.0    1847.7                              0.2245
-    0:06:57  733943.9     14.90     469.3    1872.4                              0.2256
-    0:06:57  733943.9     14.90     469.3    1872.4                              0.2256
-    0:06:57  734164.2     14.89     468.9    1872.4                              0.2257
-    0:06:57  734164.2     14.89     468.9    1872.4                              0.2257
-    0:07:32  757738.5     13.76     434.3    1881.0                              0.2299
-    0:07:32  757738.5     13.76     434.3    1881.0                              0.2299
-    0:07:39  759917.2     13.33     420.7    1864.6                              0.2316
-    0:07:39  759917.2     13.33     420.7    1864.6                              0.2316
-    0:08:09  773405.2     12.57     395.7    1872.2                              0.2333
-    0:08:09  773405.2     12.57     395.7    1872.2                              0.2333
-    0:08:16  776563.1     12.42     392.1    1872.8                              0.2349
-    0:08:16  776563.1     12.42     392.1    1872.8                              0.2349
-    0:08:47  785693.6     12.27     387.4    1876.6                              0.2369
-    0:08:47  785693.6     12.27     387.4    1876.6                              0.2369
-    0:08:53  786330.1     12.28     388.2    1877.2                              0.2374
-    0:08:53  786330.1     12.28     388.2    1877.2                              0.2374
-    0:09:12  787040.0     12.14     383.7    1876.9                              0.2376
+    0:00:19   19720.0      0.00       0.0      23.6                            337.2829
+    0:00:19   19721.0      0.00       0.0      23.6                            337.5375
+    0:00:19   19721.0      0.00       0.0      23.6                            337.5375
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
 
 
-  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  Beginning Design Rule Fixing  (max_capacitance)
   ----------------------------
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:09:12  787040.0     12.14     383.7    1876.9                              0.2376
+    0:00:20   19728.0      0.00       0.0      23.6                            337.3949
   Global Optimization (Phase 31)
   Global Optimization (Phase 32)
   Global Optimization (Phase 33)
-    0:09:13  837419.9     12.41     390.7     635.3 aluReg/net85771              0.2496
-    0:09:13  856905.9     12.40     390.5     539.0 alu/net74111                 0.2542
-    0:09:14  885523.1     12.38     389.9     467.0 alu/mult_x_7/n557            0.2614
-    0:09:15  915951.7     12.38     390.0     419.3 alu/net76825                 0.2690
-    0:09:15  936931.1     12.38     389.8     406.1 aluFlagsReg/net85627         0.2748
-    0:09:16  942316.7     12.29     386.9     388.8 alu/net72608                 0.2759
-    0:09:17  944128.2     12.22     384.4     386.4 alu/net73265                 0.2763
-    0:09:17  945352.2     12.37     389.6     385.4 aluReg/out_reg[14]/D         0.2771
-    0:09:18  945817.3     12.18     384.3     383.7 aluReg/out_reg[5]/D          0.2771
-    0:09:18  945425.6     12.09     382.2     383.3 aluReg/out_reg[14]/D         0.2770
-    0:09:19  945866.3     12.08     381.9     383.2 muxA/din4[15]                0.2771
-    0:09:20  984177.5     15.23     465.1     344.6 alu/in1[8]                   0.2862
-    0:09:20  999134.7     16.55     502.7     330.6 alu/net77623                 0.2892
-    0:09:21 1006968.3     17.31     530.9     327.4 alu/net72256                 0.2906
-    0:09:22 1023614.7     17.16     526.1     325.3 alu/net79156                 0.2935
-    0:09:22 1029563.4     16.92     518.5     325.1 aluReg/out_reg[14]/D         0.2944
-    0:09:23 1029906.1     16.09     493.1     324.6 aluReg/out_reg[5]/D          0.2928
-    0:09:24 1030518.1     15.84     484.9     324.1 aluReg/out_reg[5]/D          0.2929
-    0:09:25 1030518.1     15.66     480.2     324.1 aluReg/out_reg[14]/D         0.2923
-    0:09:25 1030640.5     15.63     478.3     324.1 alu/net75843                 0.2923
-    0:09:26 1031840.0     15.69     480.8     323.5 alu/net83965                 0.2925
-    0:09:26 1032868.2     15.64     479.7     323.3 aluReg/out_reg[14]/D         0.2926
-    0:09:27 1032305.1     15.44     472.5     323.2 aluReg/out_reg[5]/D          0.2924
-    0:09:27 1031815.5     15.37     470.8     323.2                              0.2923
-    0:10:00 1018618.8     11.78     371.5     372.8                              0.2860
+    0:00:20   19812.0      0.00       0.0       0.0                            338.0364
+    0:00:20   19812.0      0.00       0.0       0.0                            338.0364
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -647,7 +765,7 @@ Information: Performing clock-gating on design RegisterBank_WIDTH16_0. (PWR-730)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:10:00 1018618.8     11.78     371.5     372.8                              0.2860
+    0:00:20   19812.0      0.00       0.0       0.0                            338.0364
   Global Optimization (Phase 34)
   Global Optimization (Phase 35)
   Global Optimization (Phase 36)
@@ -664,69 +782,46 @@ Information: Performing clock-gating on design RegisterBank_WIDTH16_0. (PWR-730)
   Global Optimization (Phase 47)
   Global Optimization (Phase 48)
   Global Optimization (Phase 49)
-  Global Optimization (Phase 50)
-  Global Optimization (Phase 51)
-  Global Optimization (Phase 52)
-  Global Optimization (Phase 53)
-  Global Optimization (Phase 54)
-  Global Optimization (Phase 55)
-    0:10:06  960480.3     17.19     526.1     327.7 aluReg/out_reg[5]/D          0.2682
-    0:10:07  960333.4     16.92     517.6     327.6                              0.2683
-    0:10:36  954801.0     11.27     354.4     365.6                              0.2653
-    0:10:36  954801.0     11.27     354.4     365.6                              0.2653
-    0:10:36  947236.6     11.28     354.4     373.6                              0.2645
-    0:10:36  947236.6     11.28     354.4     373.6                              0.2645
-    0:10:38  947359.0     11.27     354.3     373.7                              0.2645
-    0:10:38  947359.0     11.27     354.3     373.7                              0.2645
-    0:10:38  947359.0     11.27     354.3     373.7                              0.2645
-    0:10:38  947359.0     11.27     354.3     373.7                              0.2645
-    0:10:39  947359.0     11.27     354.3     373.7                              0.2645
-    0:10:39  947359.0     11.27     354.3     373.7                              0.2645
-    0:10:45  950100.8     11.10     350.8     379.1                              0.2659
-    0:10:45  950100.8     11.10     350.8     379.1                              0.2659
-    0:11:16  955143.7     10.70     338.1     388.9                              0.2666
-    0:11:16  955143.7     10.70     338.1     388.9                              0.2666
-    0:11:23  955461.9     10.53     333.2     386.9                              0.2670
-    0:11:23  955461.9     10.53     333.2     386.9                              0.2670
-    0:11:30  956000.5     10.45     330.2     388.8                              0.2673
-    0:11:30  956000.5     10.45     330.2     388.8                              0.2673
-    0:11:35  956955.2     10.64     336.5     391.5                              0.2681
-    0:11:35  956955.2     10.64     336.5     391.5                              0.2681
-    0:12:07  960332.9     10.72     339.3     399.0                              0.2676
+    0:00:21   18721.0      3.27      67.3       0.0 aluReg/out_reg[31]/D       317.8934
+    0:00:22   18781.0      2.84      56.3       0.0                            318.6667
+    0:00:23   19547.0      0.00       0.0       0.0                            328.8134
+    0:00:23   19547.0      0.00       0.0       0.0                            328.8134
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
+    0:00:23   19598.0      0.00       0.0       0.0                            330.1861
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:12:07  960210.5     10.72     339.3     399.0                              0.2675
-    0:12:07  920944.6     10.81     341.5     403.6                              0.2580
-    0:12:08  914408.5     10.73     338.5     401.8                              0.2567
-    0:12:08  913380.8     10.73     338.5     401.4                              0.2565
-    0:12:08  913380.8     10.73     338.5     401.4                              0.2565
-    0:12:08  913576.6     10.73     338.4     400.2                              0.2563
-    0:12:09  907530.1     10.73     338.5     398.5                              0.2550
-    0:12:10  916489.8     10.66     336.6     378.8 alu/net76437                 0.2581
-    0:12:10  922340.5     10.63     335.3     370.0 alu/net87912                 0.2593
-    0:12:11  925327.0     10.59     334.1     364.3 muxAReg/out[5]               0.2598
-    0:12:11  929072.5     10.58     334.1     355.5 alu/net96176                 0.2604
-    0:12:12  930198.6     10.55     332.9     352.8 aluReg/out_reg[5]/D          0.2606
-    0:12:13  929904.8     10.46     329.9     353.5 aluReg/out_reg[5]/D          0.2606
-    0:12:13  930296.5     11.19     352.4     351.3 alu/net100813                0.2610
-    0:12:14  930810.6     11.33     357.1     345.2 aluReg/out_reg[14]/D         0.2607
-    0:12:15  931642.9     11.18     352.6     344.7 aluReg/out_reg[14]/D         0.2609
-    0:12:15  931814.2     11.21     352.6     344.7 aluReg/out_reg[14]/D         0.2609
-    0:12:16  932254.9     11.28     355.1     343.3 alu/net94122                 0.2611
-    0:12:16  946477.8     16.00     480.2     329.3 alu/net78085                 0.2645
-    0:12:17  952965.0     16.22     485.5     327.2 alu/net75196                 0.2657
-    0:12:18  960455.8     17.02     512.8     326.0 alu/net73255                 0.2672
-    0:12:18  960529.3     17.08     513.0     325.9 alu/net100042                0.2673
-    0:12:19  961484.0     17.05     511.8     325.2 alu/net75023                 0.2675
-    0:12:19  962928.3     17.05     511.8     325.1                              0.2677
-    0:12:29  948313.8     10.59     335.1     351.4                              0.2645
-    0:12:29  947946.6     10.25     324.2     350.7                              0.2645
-    0:12:29  948044.5     10.25     324.2     350.7                              0.2645
-    0:12:30  940015.0     10.18     322.5     349.0                              0.2642
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
+    0:00:23   19565.0      0.00       0.0       0.0                            330.1861
+    0:00:23   18337.0      3.13      66.3       0.0                            308.8066
+    0:00:24   18470.0      0.03       0.1       0.0                            311.9331
+    0:00:24   18470.0      0.03       0.1       0.0                            311.9331
+    0:00:24   18542.0      0.03       0.0       0.0                            313.7939
+    0:00:25   18451.0      0.01       0.0       0.0                            312.0190
+    0:00:25   18507.0      0.00       0.0       0.0                            313.1288
+    0:00:25   18507.0      0.00       0.0       0.0                            313.1288
+    0:00:25   18507.0      0.00       0.0       0.0                            313.1288
+    0:00:25   18360.0      0.00       0.0       0.0                            309.7596
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db'
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db'
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -737,17 +832,14 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 1
+source ../reports.tcl -echo > 2_gate_clock.log
 optimize_registers
   Loading design 'Top_WIDTH16'
 
   Beginning retiming
   ------------------
-Information: Updating design information... (UID-85)
   Retiming Top_WIDTH16 (top)
-Warning: There are buffer or inverter cells in the
-	clock tree. The clock tree has to be recreated after
-	retiming. (RTDC-47)
-  Preferred flip-flop is DFRQX1 with setup = 0.70
+  Preferred flip-flop is DCX1 with setup = 0.40
 
 
   Retiming base-clock clk, rising edge.
@@ -763,23 +855,23 @@ Warning: There are buffer or inverter cells in the
   ... minimum area retiming step 3 done.
   Beginning final register move ...
   ... final register move done.
-  Lower bound estimate = 37.35
-  Critical path length = 37.35
-  Clock correction = 7.77 (clock-to-Q delay = 2.56, setup = 0.70, uncertainty = 4.50)
-Warning: Design 'Top_WIDTH16' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+  Lower bound estimate = 39.35
+  Critical path length = 39.35
+  Clock correction = 5.65 (clock-to-Q delay = 0.75, setup = 0.40, uncertainty = 4.50)
 
   Retiming complete
   -----------------
-Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
 Information: Performing power optimization. (PWR-850)
 Alib files are up-to-date.
 Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
 Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
 
-Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 11 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
-Loaded alib file './alib-52/nldm_op_cond_typ.db.alib'
+Warning: Operating condition typical set on design Top_WIDTH16 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+c5n_utah_std_v5_t27 is characterized. Delays may be inaccurate as a result. (OPT-998)
 Information: State dependent leakage is now switched from on to off.
 
   Beginning Pass 1 Mapping  (Incremental)
@@ -787,23 +879,23 @@ Information: State dependent leakage is now switched from on to off.
 
   Updating timing information
 Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIELO' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
 Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:00 1024250.7      6.14     318.4     548.6                              0.3674
-    0:00:00 1024250.7      6.14     318.4     548.6                              0.3674
+    0:00:01   18345.0      0.89      10.4      11.5                            317.4420
+    0:00:01   18345.0      0.89      10.4      11.5                            317.4420
 
   Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
   -------------------------------
 
   Beginning Incremental Implementation Selection
   ----------------------------------------------
-    0:00:02 1014947.8      5.84     306.7     546.9                              0.3648
+    0:00:01   18241.0      0.89       9.5      11.5                            315.2848
 
   Beginning Delay Optimization Phase
   ----------------------------------
@@ -812,110 +904,65 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:02 1014947.8      5.84     306.7     546.9                              0.3648
-    0:00:02 1014947.8      5.84     306.7     546.9                              0.3665
-    0:00:03 1006747.0      5.84     306.8     549.8                              0.3657
-    0:00:03 1006747.0      5.84     306.8     549.8                              0.3634
-    0:00:03 1007873.1      4.99     253.3     555.3                              0.3636
-    0:00:03 1007873.1      4.99     253.3     555.3                              0.3636
-    0:00:14 1020676.1      0.50      13.8     488.3                              0.3698
+    0:00:01   18241.0      0.89       9.5      11.5                            315.2848
+    0:00:01   18466.0      0.89       9.5      11.5                            307.1992
+    0:00:01   18530.0      0.88       9.3      11.5                            308.7833
+    0:00:01   18530.0      0.88       9.3      11.5                            316.6044
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
 
   Beginning Delay Optimization
   ----------------------------
-    0:00:14 1020676.1      0.50      13.8     488.3                              0.3698
-    0:00:15 1020896.5      0.49      13.6     488.4                              0.3698
-    0:00:15 1020896.5      0.49      13.6     488.4                              0.3698
-    0:00:15 1020896.5      0.49      13.6     488.4                              0.3698
-    0:00:15 1020896.5      0.49      13.6     488.4                              0.3698
-    0:00:16 1030247.8      0.47      14.3     477.5                              0.2587
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5451
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5373
 
 
-  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  Beginning Design Rule Fixing  (max_capacitance)
   ----------------------------
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:16 1030247.8      0.47      14.3     477.5                              0.2587
-    0:00:16 1052230.9      0.39      10.5     346.0 alu/n3789                    0.2670
-    0:00:17 1056955.5      0.39      10.2     334.4 alu/n4853                    0.2682
-    0:00:18 1059452.5      0.38       9.4     325.9 din_2[8]                     0.2687
-    0:00:18 1061043.7      0.38       9.4     314.4 alu/n4470                    0.2690
-    0:00:19 1061631.2      0.37       9.3     313.5 alu/clk_r_REG103_S2/D        0.2691
-    0:00:20 1062757.3      0.24       4.9     315.5 alu/clk_r_REG103_S2/D        0.2695
-    0:00:20 1062855.2      0.22       4.8     315.5 alu/net165271                0.2695
-    0:00:21 1062316.6      0.22       4.3     312.9 alu/n1487                    0.2694
-    0:00:22 1063834.4      0.21       4.3     311.5 alu/n1177                    0.2701
-    0:00:22 1064177.1      0.21       4.2     310.7 alu/n3994                    0.2701
-    0:00:23 1064201.6      0.87       7.8     310.5 alu/n417                     0.2701
-    0:00:24 1065033.9      0.97      33.5     309.6 alu/clk_r_REG94_S2/D         0.2703
-    0:00:24 1068950.7      3.89     146.5     299.9 alu/n2407                    0.2713
-    0:00:25 1075046.2      4.84     207.7     295.2 alu/n28                      0.2727
-    0:00:26 1077176.0      4.53     191.0     293.7 alu/clk_r_REG34_S2/D         0.2732
-    0:00:27 1076612.9      3.14     119.6     293.6 alu/clk_r_REG34_S2/D         0.2730
-    0:00:28 1076882.2      2.89     107.0     293.6 alu/n2403                    0.2730
-    0:00:28 1077029.1      2.87     106.6     293.2 alu/n4954                    0.2730
-    0:00:29 1077959.3      2.87     106.0     292.9 alu/n1948                    0.2731
-    0:00:29 1077934.9      2.88     106.1     292.9                              0.2755
-    0:00:29 1071031.5      2.88     105.9     302.1                              0.2740
-    0:00:29 1071031.5      2.88     105.9     302.1                              0.2713
-    0:00:29 1071986.2      2.23      84.0     305.6                              0.2714
-    0:00:29 1071986.2      2.23      84.0     305.6                              0.2714
-    0:00:43 1060725.4      0.00       0.0     327.0                              0.2685
-    0:00:43 1060725.4      0.00       0.0     327.0                              0.2685
-    0:00:43 1060725.4      0.00       0.0     327.0                              0.2685
-    0:00:43 1060725.4      0.00       0.0     327.0                              0.2685
-    0:00:43 1060725.4      0.00       0.0     327.0                              0.2685
-    0:00:43 1060725.4      0.00       0.0     327.0                              0.2711
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2708
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2682
+    0:00:02   18644.0      0.00       0.0      11.5                            318.5373
+    0:00:02   18763.0      0.00       0.0       0.0                            312.5531
+    0:00:02   18756.0      0.00       0.0       0.0                            312.2667
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            320.1741
+    0:00:02   18756.0      0.00       0.0       0.0                            312.2667
+    0:00:02   18765.0      0.00       0.0       0.0                            312.5498
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18765.0      0.00       0.0       0.0                            320.3936
+    0:00:02   18558.0      0.00       0.0       0.0                            320.3936
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:43 1059893.1      0.00       0.0     326.1                              0.2708
-    0:00:43 1059844.1      0.00       0.0     326.1                              0.2708
-    0:00:45 1035731.3      0.00       0.0     325.3                              0.2620
-    0:00:47 1034605.3      0.00       0.0     322.6 alu/n3918                    0.2619
-    0:00:48 1036220.9      0.00       0.0     317.3 din_1[3]                     0.2622
-    0:00:49 1036514.7      0.00       0.0     316.2 alu/n5513                    0.2622
-    0:00:50 1036465.7      0.00       0.0     315.3 alu/n4124                    0.2622
-    0:00:51 1036392.3      1.20      39.0     310.6 alu/clk_r_REG103_S2/D        0.2625
-    0:00:51 1036539.2      1.12      31.4     309.6 alu/n4149                    0.2626
-    0:00:52 1046037.4      2.90      95.0     293.8 alu/n1909                    0.2648
-    0:00:53 1047702.1      4.52     164.5     293.2 alu/n3455                    0.2654
-    0:00:53 1048314.1      4.34     165.8     292.9 alu/clk_r_REG34_S2/D         0.2655
-    0:00:54 1048583.3      2.95     111.4     292.9 alu/clk_r_REG34_S2/D         0.2655
-    0:00:55 1048020.3      2.62      96.1     292.5 alu/clk_r_REG34_S2/D         0.2653
-    0:00:55 1048705.7      2.34      83.9     292.2 alu/clk_r_REG60_S2/D         0.2654
-    0:00:56 1048705.7      2.30      82.5     292.2 alu/clk_r_REG34_S2/D         0.2654
-    0:00:56 1048730.2      2.36      85.1     292.2 alu/n1455                    0.2654
-    0:00:57 1049244.3      2.36      83.7     291.7 alu/n1104                    0.2655
-    0:00:57 1049415.7      2.36      83.5     291.7 alu/n1164                    0.2655
-    0:00:57 1049415.7      2.36      83.5     291.7                              0.2655
-    0:00:58 1019966.2      2.78      93.8     301.6                              0.2578
-    0:00:58 1016857.3      2.62      89.2     301.4                              0.2571
-    0:00:59 1016612.5      2.62      89.2     301.2                              0.2570
-    0:00:59 1016612.5      2.62      89.2     301.2                              0.2570
-    0:01:07 1017860.9      0.68      14.4     328.3                              0.2588
-    0:01:07 1017860.9      0.68      14.4     328.3                              0.2588
-    0:01:13 1019427.7      0.56       9.4     325.8                              0.2592
-    0:01:13 1019427.7      0.56       9.4     325.8                              0.2592
-    0:01:20 1021165.7      0.33       5.7     329.7                              0.2601
-    0:01:20 1020994.4      0.31       4.8     329.3                              0.2601
-    0:01:20 1021043.3      0.31       4.8     329.3                              0.2601
-    0:01:21 1016808.3      0.31       4.7     324.4                              0.2591
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
+    0:00:02   18558.0      0.00       0.0       0.0                            312.5498
+    0:00:02   18549.0      0.00       0.0       0.0                            312.2667
+    0:00:03   18401.0      0.00       0.0       0.0                            317.3959
+    0:00:03   18401.0      0.00       0.0       0.0                            317.3959
+    0:00:04   18398.0      0.00       0.0       0.0                            317.3336
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db'
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db'
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -926,16 +973,19 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 1
+source ../reports.tcl -echo > 3_opt_regs.log
 compile_ultra -incremental -gate_clock
-Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
 Information: Performing power optimization. (PWR-850)
 Alib files are up-to-date.
 Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
 Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
 
-Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 11 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
+Warning: Operating condition typical set on design Top_WIDTH16 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+c5n_utah_std_v5_t27 is characterized. Delays may be inaccurate as a result. (OPT-998)
 Information: State dependent leakage is now switched from on to off.
 
   Beginning Pass 1 Mapping  (Incremental)
@@ -943,37 +993,23 @@ Information: State dependent leakage is now switched from on to off.
 
   Updating timing information
 Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIELO' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
 Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
-Information: Skipping clock gating on design Top_WIDTH16, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH16_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH16_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH32, since there are no registers. (PWR-806)
-Information: Performing clock-gating on design Control. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH2. (PWR-730)
-Information: Performing clock-gating on design ALU_WIDTH16. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH32. (PWR-730)
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:02 1016808.3      0.31       4.7     324.4                              0.2619
-    0:00:02 1018693.3      0.31       4.3     326.9                              0.2619
+    0:00:00   18398.0      0.00       0.0       0.0                            309.0935
+    0:00:00   18398.0      0.00       0.0       0.0                            309.0935
 
   Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
   -------------------------------
 
   Beginning Incremental Implementation Selection
   ----------------------------------------------
-    0:00:03 1012818.1      0.28       4.0     327.2                              0.2606
+    0:00:00   18398.0      0.00       0.0       0.0                            309.0935
 
   Beginning Delay Optimization Phase
   ----------------------------------
@@ -982,105 +1018,64 @@ Information: Performing clock-gating on design RegisterBank_WIDTH32. (PWR-730)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:03 1012818.1      0.28       4.0     327.2                              0.2606
-    0:00:03 1012818.1      0.28       4.0     327.2                              0.2606
-    0:00:03 1010223.2      0.28       4.1     330.0                              0.2600
-    0:00:03 1010223.2      0.28       4.1     330.0                              0.2600
-    0:00:03 1010223.2      0.28       4.1     330.0                              0.2600
-    0:00:03 1010223.2      0.28       4.1     330.0                              0.2600
-    0:00:08 1011740.9      0.21       2.4     332.0                              0.2609
+    0:00:00   18398.0      0.00       0.0       0.0                            309.0935
+    0:00:00   18398.0      0.00       0.0       0.0                            309.0935
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
 
   Beginning Delay Optimization
   ----------------------------
-    0:00:08 1011643.0      0.45       9.2     334.0                              0.2603
-    0:00:08 1011912.3      0.00       0.0     332.8                              0.2603
-    0:00:08 1011912.3      0.00       0.0     332.8                              0.2603
-    0:00:08 1011912.3      0.00       0.0     332.8                              0.2603
-    0:00:08 1011912.3      0.00       0.0     332.8                              0.2603
-    0:00:09 1011887.8      0.00       0.0     332.8                              0.2597
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7224
+    0:00:00   18448.0      0.00       0.0       0.8                            310.6226
 
 
-  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  Beginning Design Rule Fixing  (max_capacitance)
   ----------------------------
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:09 1011887.8      0.00       0.0     332.8                              0.2597
-    0:00:10 1015657.7      0.00       0.0     332.1 alu/n2314                    0.2610
-    0:00:11 1016588.0      0.00       0.0     327.8 alu/n5157                    0.2614
-    0:00:12 1018007.8      0.00       0.0     321.8 alu/n7200                    0.2615
-    0:00:13 1018350.5      0.00       0.0     318.9 alu/n4149                    0.2618
-    0:00:14 1019060.5      0.00       0.0     313.4 alu/n620                     0.2619
-    0:00:14 1020406.9      0.00       0.0     312.5 alu/mult_x_7/n698            0.2624
-    0:00:15 1020186.5      0.00       0.0     312.2 alu/n960                     0.2624
-    0:00:15 1020529.3      0.18       0.2     312.0 alu/n3562                    0.2626
-    0:00:16 1021973.6      0.88      29.0     311.3 alu/clk_r_REG94_S2/D         0.2630
-    0:00:16 1022610.1      0.70      22.6     311.2 alu/clk_r_REG116_S2/D        0.2632
-    0:00:17 1023442.4      0.46       7.6     309.4 alu/n1396                    0.2628
-    0:00:17 1032010.4      2.92     103.4     295.8 alu/n7202                    0.2649
-    0:00:18 1034360.5      3.02     101.9     294.2 alu/n3930                    0.2654
-    0:00:18 1036832.9      3.05     111.8     293.8 alu/n3741                    0.2659
-    0:00:19 1036172.0      2.36      84.6     293.7 alu/clk_r_REG60_S2/D         0.2657
-    0:00:19 1036343.3      2.20      77.1     293.7 alu/clk_r_REG60_S2/D         0.2657
-    0:00:20 1036563.7      2.29      77.0     293.5 alu/n937                     0.2658
-    0:00:20 1036784.0      2.29      77.0     293.3 alu/n661                     0.2658
-    0:00:21 1037004.3      2.20      75.8     293.3                              0.2659
-    0:00:21 1033748.5      2.20      75.8     301.0                              0.2650
-    0:00:21 1033748.5      2.20      75.8     301.0                              0.2650
-    0:00:21 1034091.2      2.06      70.4     302.1                              0.2650
-    0:00:21 1034091.2      2.06      70.4     302.1                              0.2650
-    0:00:28 1026428.4      0.03       0.1     319.5                              0.2624
-    0:00:28 1026379.5      0.00       0.0     319.6                              0.2618
-    0:00:28 1026379.5      0.00       0.0     319.6                              0.2618
-    0:00:28 1026379.5      0.00       0.0     319.6                              0.2618
-    0:00:28 1026379.5      0.00       0.0     319.6                              0.2618
-    0:00:28 1026379.5      0.00       0.0     319.6                              0.2618
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
+    0:00:00   18448.0      0.00       0.0       0.8                            310.6226
+    0:00:00   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:00   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:28 1025840.9      0.00       0.0     319.1                              0.2616
-    0:00:28 1025792.0      0.00       0.0     319.1                              0.2615
-    0:00:30 1016146.8      0.00       0.0     315.1 alu/n421                     0.2598
-    0:00:31 1016758.8      0.00       0.0     313.3 alu/n4482                    0.2601
-    0:00:32 1018496.9      0.00       0.0     307.0 aluReg/net171517             0.2604
-    0:00:33 1018815.2      0.00       0.0     305.6 alu/n1673                    0.2605
-    0:00:34 1018472.4      9.88     220.8     301.0 alu/n3994                    0.2608
-    0:00:34 1019157.9      9.59     244.4     300.9 alu/clk_r_REG103_S2/D        0.2610
-    0:00:35 1019892.3      9.63     244.5     300.6 alu/clk_r_REG103_S2/D        0.2611
-    0:00:35 1021654.8      9.81     253.8     297.6 alu/n6441                    0.2616
-    0:00:36 1027603.5     13.23     456.1     293.0 alu/n723                     0.2629
-    0:00:36 1028582.7     13.30     461.4     292.7 alu/n961                     0.2630
-    0:00:37 1029806.7      5.56     206.6     292.6 alu/clk_r_REG86_S2/D         0.2633
-    0:00:38 1031153.1      3.05      93.5     292.4 alu/n3652                    0.2612
-    0:00:38 1031128.6      3.15      98.7     292.3 alu/n2010                    0.2612
-    0:00:39 1031226.5      3.15      98.5     292.2                              0.2613
-    0:00:39 1013894.7      3.13      90.2     297.6                              0.2558
-    0:00:40 1010834.7      2.62      85.9     297.5                              0.2550
-    0:00:40 1010834.7      2.62      85.9     297.5                              0.2550
-    0:00:40 1010834.7      2.62      85.9     297.5                              0.2550
-    0:00:42 1010075.8      0.00       0.0     314.6                              0.2556
-    0:00:42 1010075.8      0.00       0.0     314.6                              0.2556
-    0:00:42 1010075.8      0.00       0.0     314.6                              0.2556
-    0:00:42 1010075.8      0.00       0.0     314.6                              0.2556
-    0:00:42 1010075.8      0.00       0.0     314.6                              0.2556
-    0:00:43 1010075.8      0.00       0.0     314.6                              0.2556
-    0:00:43 1010075.8      0.00       0.0     314.6                              0.2556
-    0:00:43 1004372.0      0.00       0.0     311.2                              0.2548
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
+    0:00:01   18455.0      0.00       0.0       0.0                            310.7185
+    0:00:01   18410.0      0.00       0.0       0.0                            309.2742
+    0:00:01   18398.0      0.00       0.0       0.0                            309.0862
+    0:00:01   18398.0      0.00       0.0       0.0                            309.0862
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db'
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db'
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -1091,20 +1086,24 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 1
+source ../reports.tcl -echo > 4_incremental.log
 optimize_netlist -area
 Information: Performing power optimization. (PWR-850)
 Alib files are up-to-date.
 Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
 Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
 
-Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 11 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
+Warning: Operating condition typical set on design Top_WIDTH16 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+c5n_utah_std_v5_t27 is characterized. Delays may be inaccurate as a result. (OPT-998)
 
   Updating timing information
 Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIELO' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI' in the library 'UofU_Digital_v1_2' is not characterized for internal power. (PWR-536)
 Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
 
 
@@ -1115,9 +1114,10 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:00 1004372.0      0.00       0.0     311.2                              0.2548
-    0:00:03  967218.8      0.00       0.0     285.7                              0.2482
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
+    0:00:00   18398.0      0.00       0.0       0.0                            309.0862
+    0:00:02   17819.0      0.00       0.0       0.0                            301.7413
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/UofU_Digital_v1_2.db'
+Loading db file '/home/eamta7/EAMTA2019/synopsys/libs/c5n_utah_std_v5_t27.db'
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -1126,987 +1126,17 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   Optimization Complete
   ---------------------
 1
-compile_ultra -incremental -gate_clock
-Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
-Information: Performing power optimization. (PWR-850)
-Alib files are up-to-date.
-Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
-Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
-
-Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
-
-Information: State dependent leakage is now switched from on to off.
-
-  Beginning Pass 1 Mapping  (Incremental)
-  ------------------------
-
-  Updating timing information
-Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
-Information: Skipping clock gating on design Top_WIDTH16, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH16_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH16_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH32, since there are no registers. (PWR-806)
-Information: Performing clock-gating on design Control. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH2. (PWR-730)
-Information: Performing clock-gating on design ALU_WIDTH16. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH32. (PWR-730)
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:01  967218.8      0.00       0.0     285.7                              0.2482
-    0:00:01  967218.8      0.00       0.0     285.7                              0.2482
-
-  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
-  -------------------------------
-
-  Beginning Incremental Implementation Selection
-  ----------------------------------------------
-    0:00:01  967218.8      0.00       0.0     285.7                              0.2482
-
-  Beginning Delay Optimization Phase
-  ----------------------------------
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:01  967218.8      0.00       0.0     285.7                              0.2482
-    0:00:01  967218.8      0.00       0.0     285.7                              0.2482
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-
-  Beginning Delay Optimization
-  ----------------------------
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965921.4      0.00       0.0     291.1                              0.2481
-    0:00:01  965896.9      0.00       0.0     290.9                              0.2475
-
-
-  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
-  ----------------------------
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:01  965896.9      0.00       0.0     290.9                              0.2475
-    0:00:02  969348.6      0.00       0.0     289.1 alu/n2052                    0.2489
-    0:00:04  971600.7      0.00       0.0     282.0 ctrl/n2                      0.2492
-    0:00:04  972653.4      0.00       0.0     279.2 alu/n5478                    0.2496
-    0:00:05  974440.4      0.00       0.0     273.4 alu/n6292                    0.2500
-    0:00:05  974318.0      0.00       0.0     272.9 alu/n1337                    0.2500
-    0:00:06  974709.7      0.72      19.8     272.8 alu/n6372                    0.2502
-    0:00:07  977133.2      0.50      11.9     271.9 alu/clk_r_REG34_S2/D         0.2501
-    0:00:07  978283.8      0.19       2.3     270.7 alu/clk_r_REG60_S2/D         0.2496
-    0:00:08  978381.7      0.16       1.8     270.6 alu/clk_r_REG60_S2/D         0.2491
-    0:00:08  980511.5      1.31      17.3     265.4 alu/n5054                    0.2495
-    0:00:09  983620.4      2.57      82.9     262.8 alu/n1904                    0.2501
-    0:00:09  984379.3      2.56      78.2     262.4 alu/n7117                    0.2504
-    0:00:10  985529.9      2.40      74.2     262.2 alu/n3655                    0.2507
-    0:00:10  985603.3      2.40      74.2     262.2 alu/n6733                    0.2507
-    0:00:11  985995.0      2.40      74.2     262.2                              0.2508
-    0:00:11  983008.4      2.40      73.5     269.7                              0.2501
-    0:00:11  983008.4      2.40      73.5     269.7                              0.2501
-    0:00:11  983547.0      1.72      52.3     271.1                              0.2500
-    0:00:11  983547.0      1.72      52.3     271.1                              0.2500
-    0:00:11  980070.8      0.00       0.0     280.3                              0.2490
-    0:00:11  980070.8      0.00       0.0     280.3                              0.2490
-    0:00:11  980070.8      0.00       0.0     280.3                              0.2490
-    0:00:11  980070.8      0.00       0.0     280.3                              0.2490
-    0:00:11  980070.8      0.00       0.0     280.3                              0.2490
-    0:00:11  980070.8      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:12  979972.9      0.00       0.0     280.3                              0.2490
-    0:00:13  973657.1      0.00       0.0     279.1 alu/n7151                    0.2479
-    0:00:14  974048.7      0.00       0.0     278.4 din_2[15]                    0.2480
-    0:00:15  975468.6      0.06       0.2     271.6 alu/n5132                    0.2481
-    0:00:16  975493.1      0.23       1.7     269.6 alu/clk_r_REG34_S2/D         0.2471
-    0:00:16  978479.6      1.23      11.7     263.9 alu/n6448                    0.2477
-    0:00:17  979507.8      1.28      16.6     263.0 alu/n852                     0.2479
-    0:00:17  980046.3      1.22      13.1     262.9 alu/clk_r_REG34_S2/D         0.2480
-    0:00:18  980756.3      0.78       1.8     262.9 alu/clk_r_REG34_S2/D         0.2480
-    0:00:18  981123.5      0.71       3.0     262.9 alu/n3741                    0.2481
-    0:00:19  981123.5      0.71       3.0     262.8 alu/n3393                    0.2481
-    0:00:19  981221.4      0.73       3.1     262.7                              0.2482
-    0:00:19  967414.7      2.47      65.2     269.3                              0.2440
-    0:00:20  966949.5      1.51      24.6     269.2                              0.2437
-    0:00:20  966949.5      1.51      24.6     269.2                              0.2437
-    0:00:21  967194.3      0.00       0.0     280.3                              0.2441
-    0:00:21  967194.3      0.00       0.0     280.3                              0.2441
-    0:00:21  967194.3      0.00       0.0     280.3                              0.2441
-    0:00:21  967194.3      0.00       0.0     280.3                              0.2441
-    0:00:21  967194.3      0.00       0.0     280.3                              0.2441
-    0:00:21  967194.3      0.00       0.0     280.3                              0.2441
-    0:00:21  967194.3      0.00       0.0     280.3                              0.2441
-    0:00:21  963938.5      0.00       0.0     279.2                              0.2436
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
-
-
-Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
-
-
-  Optimization Complete
-  ---------------------
-Information: State dependent leakage is now switched from off to on.
-Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-1
-optimize_netlist -area
-Information: Performing power optimization. (PWR-850)
-Alib files are up-to-date.
-Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
-Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
-
-Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
-
-
-  Updating timing information
-Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
-
-
-  Beginning Area Optimization
-  -----------------------------
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:00  963938.5      0.00       0.0     279.2                              0.2436
-    0:00:03  955590.8      0.00       0.0     278.6                              0.2414
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
-
-
-Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
-
-
-  Optimization Complete
-  ---------------------
-1
-compile_ultra -incremental -gate_clock
-Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
-Information: Performing power optimization. (PWR-850)
-Alib files are up-to-date.
-Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
-Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
-
-Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
-
-Information: State dependent leakage is now switched from on to off.
-
-  Beginning Pass 1 Mapping  (Incremental)
-  ------------------------
-
-  Updating timing information
-Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
-Information: Skipping clock gating on design Top_WIDTH16, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH16_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design Mux4_WIDTH16_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH16_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design RegisterBank_WIDTH6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_1, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH16_0_0, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH6, since there are no registers. (PWR-806)
-Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_RegisterBank_WIDTH32, since there are no registers. (PWR-806)
-Information: Performing clock-gating on design Control. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH2. (PWR-730)
-Information: Performing clock-gating on design ALU_WIDTH16. (PWR-730)
-Information: Performing clock-gating on design RegisterBank_WIDTH32. (PWR-730)
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:01  955590.8      0.00       0.0     278.6                              0.2414
-    0:00:01  955590.8      0.00       0.0     278.6                              0.2414
-
-  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
-  -------------------------------
-
-  Beginning Incremental Implementation Selection
-  ----------------------------------------------
-    0:00:01  955590.8      0.00       0.0     278.6                              0.2414
-
-  Beginning Delay Optimization Phase
-  ----------------------------------
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:01  955590.8      0.00       0.0     278.6                              0.2414
-    0:00:02  955590.8      0.00       0.0     278.6                              0.2414
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-
-  Beginning Delay Optimization
-  ----------------------------
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954415.8      0.00       0.0     283.4                              0.2413
-    0:00:02  954464.7      0.00       0.0     283.3                              0.2408
-
-
-  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
-  ----------------------------
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:02  954464.7      0.00       0.0     283.3                              0.2408
-    0:00:03  959115.9      0.00       0.0     278.3 alu/n1093                    0.2426
-    0:00:03  963473.4      0.00       0.0     270.8 ctrl/n2                      0.2436
-    0:00:04  965040.1      0.00       0.0     269.4 alu/n7448                    0.2443
-    0:00:05  965701.1      0.00       0.0     268.3 alu/n6367                    0.2445
-    0:00:05  965921.4      0.00       0.0     268.2 alu/n6019                    0.2445
-    0:00:05  966704.7      0.44       7.0     267.9 alu/clk_r_REG94_S2/D         0.2448
-    0:00:06  967586.0      0.18       1.4     267.9 alu/clk_r_REG94_S2/D         0.2450
-    0:00:07  968026.7      0.11       0.4     267.8 alu/clk_r_REG116_S2/D        0.2451
-    0:00:07  968467.3      0.11       0.5     266.5 alu/n1035                    0.2453
-    0:00:07  970425.7      0.72      15.9     261.8 alu/n1321                    0.2456
-    0:00:08  970988.7      0.70      14.9     261.6 alu/n7677                    0.2457
-    0:00:08  971649.7      0.49       7.5     261.5 alu/clk_r_REG34_S2/D         0.2459
-    0:00:09  972237.2      0.30       4.7     261.5 alu/clk_r_REG94_S2/D         0.2461
-    0:00:10  972922.7      0.14       1.3     261.5 alu/clk_r_REG34_S2/D         0.2463
-    0:00:10  972922.7      0.14       1.3     261.5 alu/n4410                    0.2463
-    0:00:11  972800.3      0.19       1.8     261.4 alu/n7423                    0.2463
-    0:00:11  972751.3      0.17       1.6     261.4                              0.2463
-    0:00:11  970670.5      0.17       1.8     267.8                              0.2459
-    0:00:11  970670.5      0.17       1.8     267.8                              0.2459
-    0:00:11  971331.5      0.02       0.0     268.7                              0.2460
-    0:00:11  971331.5      0.02       0.0     268.7                              0.2460
-    0:00:11  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:11  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:11  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:11  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:11  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:11  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:12  970768.4      0.00       0.0     269.9                              0.2458
-    0:00:13  967488.1      0.00       0.0     268.5 alu/n8005                    0.2453
-    0:00:14  969005.9      0.13       1.2     262.6 alu/n453                     0.2454
-    0:00:15  969373.1      0.49       6.0     261.9 alu/n5339                    0.2455
-    0:00:15  969813.7      0.49       5.7     261.6 alu/n3467                    0.2456
-    0:00:16  969985.1      0.48       5.7     261.6 alu/clk_r_REG34_S2/D         0.2456
-    0:00:17  970841.9      0.31       2.3     261.5 alu/clk_r_REG34_S2/D         0.2458
-    0:00:17  970792.9      0.31       2.3     261.4 alu/n2052                    0.2458
-    0:00:17  970915.3      0.28       2.5     261.4 alu/n1404                    0.2458
-    0:00:17  970890.8      0.28       2.5     261.4                              0.2458
-    0:00:18  958479.5      1.64      58.1     267.1                              0.2419
-    0:00:19  959581.1      0.53      10.1     267.0                              0.2420
-    0:00:19  959581.1      0.53      10.1     267.0                              0.2420
-    0:00:19  960144.1      0.00       0.0     274.1                              0.2417
-    0:00:19  960144.1      0.00       0.0     274.1                              0.2417
-    0:00:19  960144.1      0.00       0.0     274.1                              0.2417
-    0:00:19  960144.1      0.00       0.0     274.1                              0.2417
-    0:00:19  960144.1      0.00       0.0     274.1                              0.2417
-    0:00:19  960144.1      0.00       0.0     274.1                              0.2417
-    0:00:19  960144.1      0.00       0.0     274.1                              0.2417
-    0:00:20  957794.0      0.00       0.0     271.9                              0.2415
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
-
-
-Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
-
-
-  Optimization Complete
-  ---------------------
-Information: State dependent leakage is now switched from off to on.
-Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-1
-optimize_netlist -area
-Information: Performing power optimization. (PWR-850)
-Alib files are up-to-date.
-Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
-Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
-
-Information: There are 7 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
-
-
-  Updating timing information
-Information: Updating design information... (UID-85)
-Information: The library cell 'LOGIC1' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The library cell 'LOGIC0' in the library 'op_cond_typ' is not characterized for internal power. (PWR-536)
-Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
-
-
-  Beginning Area Optimization
-  -----------------------------
-
-                                  TOTAL                                                
-   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
-  --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:01  957794.0      0.00       0.0     271.9                              0.2415
-    0:00:03  955273.1      0.00       0.0     270.8                              0.2407
-Loading db file '/home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db'
-
-
-Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
-
-
-  Optimization Complete
-  ---------------------
-1
+source ../reports.tcl -echo > 5_opt_netlist_area.log
 change_names -rule verilog
 1
-analyze_datapath
-Current design is 'Top_WIDTH16'.
-Current design is 'Top_WIDTH16'.
-
-***************************************************
-Estimate of Datapath Content
-
-Extracted Datapath:    area =   0.0%,  parts =   0
-Singleton Datapath:    area =  40.7%,  parts =   9
-
-Total Datapath:        area =  40.7%,  parts =   9
-
-***************************************************
-
-Estimate of Datapath Types
-
-
-Singletons:
-                        out width
-  component     count   min   max     ave
-  ----------------------------------------
-  DW01_add          1    17    17    17.0
-  DW01_sub          3    16    17    16.3
-  DW01_inc          1    17    17    17.0
-  DW_cmp            3    16    17    16.7
-  DW_div_tc         1    17    17    17.0
-  DW_mult_tc        1    32    32    32.0
-  ----------------------------------------
-
-
-Extracted Datapaths:
-                        out width
-  operation     count   min   max     ave
-  ----------------------------------------
-
-
-***************************************************
 write_file -format ddc -hierarchy -out micro.ddc
 Writing ddc file 'micro.ddc'.
 1
 write_file -format verilog -hierarchy -out micro.v
-Writing verilog file '/home/eamta7/EAMTA_2019/synopsys/synth/work/micro.v'.
+Writing verilog file '/home/eamta7/EAMTA2019/synopsys/synth/work/micro.v'.
 Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
 1
 write_sdc micro.sdc
-1
-report_area
- 
-****************************************
-Report : area
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:54 2019
-****************************************
-
-Library(s) Used:
-
-    op_cond_typ (File: /home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db)
-
-Number of ports:                          530
-Number of nets:                          6829
-Number of cells:                         6186
-Number of combinational cells:           5919
-Number of sequential cells:               254
-Number of macros/black boxes:               0
-Number of buf/inv:                       1721
-Number of references:                      15
-
-Combinational area:             821024.753944
-Buf/Inv area:                   166708.802780
-Noncombinational area:          134248.319824
-Macro/Black Box area:                0.000000
-Net Interconnect area:      undefined  (No wire load specified)
-
-Total cell area:                955273.073769
-Total area:                 undefined
-1
-report_clock
- 
-****************************************
-Report : clocks
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:54 2019
-****************************************
-
-Attributes:
-    d - dont_touch_network
-    f - fix_hold
-    p - propagated_clock
-    G - generated_clock
-    g - lib_generated_clock
-
-Clock          Period   Waveform            Attrs     Sources
---------------------------------------------------------------------------------
-clk             45.00   {0 22.5}                      {clk}
---------------------------------------------------------------------------------
-1
-report_clock_gating
- 
-****************************************
-Report : clock_gating
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:54 2019
-****************************************
-
-
-
-                             Clock Gating Summary
-          ------------------------------------------------------------
-          |    Number of Clock gating elements    |        4         |
-          |                                       |                  |
-          |    Number of Gated registers          |   245 (98.00%)   |
-          |                                       |                  |
-          |    Number of Ungated registers        |     5 (2.00%)    |
-          |                                       |                  |
-          |    Total number of registers          |      250         |
-          ------------------------------------------------------------
-
-
-
-1
-report_clock_gating_check
- 
-****************************************
-Report : clock gating check
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:54 2019
-****************************************
-
-                                    Rise            Fall
-    Cell     Enable  Clock     Setup   Hold    Setup  Hold     Low/High  Attr
---------------------------------------------------------------------------------
-
-    muxAReg/clk_gate_out_reg/latch
-             E       CLK        1.19     -      0.38    -      -         p l
-    muxAReg/clk_gate_out_reg/latch
-             E       CLK         -     -1.15     -    -0.57    -         p l
-    muxBReg/clk_gate_out_reg/latch
-             E       CLK        1.19     -      0.38    -      -         p l
-    muxBReg/clk_gate_out_reg/latch
-             E       CLK         -     -1.15     -    -0.57    -         p l
-    cmdInReg/clk_gate_out_reg/latch
-             E       CLK        1.19     -      0.38    -      -         p l
-    cmdInReg/clk_gate_out_reg/latch
-             E       CLK         -     -1.15     -    -0.57    -         p l
-    aluReg/clk_gate_out_reg/latch
-             E       CLK        1.18     -      0.38    -      -         p l
-    aluReg/clk_gate_out_reg/latch
-             E       CLK         -     -1.15     -    -0.57    -         p l
-Disabled:
-    None
-
-Attr: 
-i:auto inferred, p:power compiler inserted, l:library cell defined
-1
-report_qor
- 
-****************************************
-Report : qor
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:54 2019
-****************************************
-
-
-  Timing Path Group 'clk'
-  -----------------------------------
-  Levels of Logic:              67.00
-  Critical Path Length:         41.02
-  Critical Path Slack:           0.00
-  Critical Path Clk Period:     45.00
-  Total Negative Slack:          0.00
-  No. of Violating Paths:        0.00
-  Worst Hold Violation:          0.00
-  Total Hold Violation:          0.00
-  No. of Hold Violations:        0.00
-  -----------------------------------
-
-
-  Cell Count
-  -----------------------------------
-  Hierarchical Cell Count:         13
-  Hierarchical Port Count:        440
-  Leaf Cell Count:               6173
-  Buf/Inv Cell Count:            1721
-  Buf Cell Count:                 168
-  Inv Cell Count:                1553
-  CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:      5919
-  Sequential Cell Count:          254
-  Macro Count:                      0
-  -----------------------------------
-
-
-  Area
-  -----------------------------------
-  Combinational Area:   821024.753944
-  Noncombinational Area:
-                        134248.319824
-  Buf/Inv Area:         166708.802780
-  Total Buffer Area:         31750.56
-  Total Inverter Area:      134958.24
-  Macro/Black Box Area:      0.000000
-  Net Area:                  0.000000
-  -----------------------------------
-  Cell Area:            955273.073769
-  Design Area:          955273.073769
-
-
-  Design Rules
-  -----------------------------------
-  Total Number of Nets:          6393
-  Nets With Violations:           631
-  Max Trans Violations:           631
-  Max Cap Violations:              34
-  -----------------------------------
-
-
-  Hostname: localhost.localdomain
-
-  Compile CPU Statistics
-  -----------------------------------------
-  Resource Sharing:                    0.00
-  Logic Optimization:                  0.00
-  Mapping Optimization:                0.00
-  -----------------------------------------
-  Overall Compile Time:                2.55
-  Overall Compile Wall Clock Time:     2.79
-
-  --------------------------------------------------------------------
-
-  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
-
-
-  Design (Hold)  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
-
-  --------------------------------------------------------------------
-
-
-1
-report_power
-Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-Warning: Design has unannotated primary inputs. (PWR-414)
-Warning: Design has unannotated sequential cell outputs. (PWR-415)
- 
-****************************************
-Report : power
-        -analysis_effort low
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:55 2019
-****************************************
-
-
-Library(s) Used:
-
-    op_cond_typ (File: /home/eamta7/EAMTA_2019/synopsys/libs/nldm_op_cond_typ.db)
-
-
-Operating Conditions: op_cond_typ   Library: op_cond_typ
-Wire Load Model Mode: top
-
-
-Global Operating Voltage = 3.3  
-Power-specific unit information :
-    Voltage Units = 1V
-    Capacitance Units = 1.000000pf
-    Time Units = 1ns
-    Dynamic Power Units = 1mW    (derived from V,C,T units)
-    Leakage Power Units = 1uW
-
-
-  Cell Internal Power  =   1.6720 mW   (87%)
-  Net Switching Power  = 240.4400 uW   (13%)
-                         ---------
-Total Dynamic Power    =   1.9124 mW  (100%)
-
-Cell Leakage Power     = 240.6786 nW
-
-
-                 Internal         Switching           Leakage            Total
-Power Group      Power            Power               Power              Power   (   %    )  Attrs
---------------------------------------------------------------------------------------------------
-io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
-memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
-black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network  8.2848e-02            0.1782        8.0840e-04            0.2610  (  13.65%)
-register           1.5147        2.6600e-03        2.5604e-02            1.5174  (  79.34%)
-sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  7.4371e-02        5.9628e-02            0.2142            0.1342  (   7.02%)
---------------------------------------------------------------------------------------------------
-Total              1.6720 mW         0.2404 mW         0.2406 uW         1.9126 mW
-1
-report_constraint
- 
-****************************************
-Report : constraint
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:55 2019
-****************************************
-
-
-                                                   Weighted
-    Group (max_delay/setup)      Cost     Weight     Cost
-    -----------------------------------------------------
-    clk                          0.00      1.00      0.00
-    default                      0.00      1.00      0.00
-    -----------------------------------------------------
-    max_delay/setup                                  0.00
-
-                              Total Neg  Critical
-    Group (critical_range)      Slack    Endpoints   Cost
-    -----------------------------------------------------
-    clk                          0.00         0      0.00
-    default                      0.00         0      0.00
-    -----------------------------------------------------
-    critical_range                                   0.00
-
-                                                   Weighted
-    Group (min_delay/hold)       Cost     Weight     Cost
-    -----------------------------------------------------
-    clk (no fix_hold)            0.00      1.00      0.00
-    default                      0.00      1.00      0.00
-    -----------------------------------------------------
-    min_delay/hold                                   0.00
-
-
-    Constraint                                       Cost
-    -----------------------------------------------------
-    min_capacitance                                  0.00 (MET)
-    max_transition                                 246.99 (VIOLATED)
-    max_capacitance                                 23.80 (VIOLATED)
-    max_delay/setup                                  0.00 (MET)
-    sequential_clock_pulse_width                     0.00 (MET)
-    critical_range                                   0.00 (MET)
-    max_leakage_power                            687540.69
-                                                          (VIOLATED)
-
-
-1
-report_resources -hier
- 
-****************************************
-Report : resources
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:55 2019
-****************************************
-
-
-No resource sharing information to report.
-
-No implementations to report
-
-No resource sharing information to report.
- 
-****************************************
-Design : Control
-****************************************
-
-No implementations to report
-
-No resource sharing information to report.
- 
-****************************************
-Design : RegisterBank_WIDTH2
-****************************************
-
-No implementations to report
-
-No resource sharing information to report.
- 
-****************************************
-Design : RegisterBank_WIDTH32
-****************************************
-
-No implementations to report
- 
-****************************************
-Design : ALU_WIDTH16
-****************************************
-
-Resource Report for this hierarchy in file ../../../rtl/ALU.sv
-=============================================================================
-| Cell           | Module         | Parameters | Contained Operations       |
-=============================================================================
-| sub_x_1        | DW01_sub       | width=16   | sub_23 (ALU.sv:23)         |
-| sub_x_2        | DW01_sub       | width=16   | sub_24 (ALU.sv:24)         |
-| add_x_3        | DW01_add       | width=17   | add_38 (ALU.sv:38)         |
-| eq_x_4         | DW_cmp         | width=17   | eq_39 (ALU.sv:39)          |
-| sub_x_5        | DW01_sub       | width=17   | sub_42 (ALU.sv:42)         |
-| eq_x_6         | DW_cmp         | width=17   | eq_43 (ALU.sv:43)          |
-| mult_x_7       | DW_mult_tc     | a_width=16 | mult_46 (ALU.sv:46)        |
-|                |                | b_width=16 |                            |
-| div_8          | DW_div_tc      | a_width=17 | div_50 (ALU.sv:50)         |
-|                |                | b_width=16 |                            |
-| lt_x_9         | DW_cmp         | width=16   | lt_51 (ALU.sv:51)          |
-=============================================================================
-
-
-Resource Report for Ungrouped Hierarchy alu/*cell*12273/u_div/u_absval_AAbs
-=============================================================================
-| Cell           | Module         | Parameters | Contained Operations       |
-=============================================================================
-| NEG            | DW01_inc       | width=17   | NEG                        |
-=============================================================================
-
-
-Resource Report for Ungrouped Hierarchy alu/div_8
-=============================================================================
-| Cell           | Module         | Parameters | Contained Operations       |
-=============================================================================
-=============================================================================
-
-
-Datapath Extraction Report
-
-Information: Operator associated with resources 'sub_23 (ALU.sv:23)' in design 'ALU_WIDTH16' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C235 (ALU.sv:23)'.  (HDL-120)
-
-Information: Operator associated with resources 'sub_24 (ALU.sv:24)' in design 'ALU_WIDTH16' breaks the datapath extraction because there is leakage due to truncation on its fanout to operator of resources 'C236 (ALU.sv:24)'.  (HDL-120)
-
-
-Implementation Report
-===============================================================================
-|                    |                  | Current            | Set            |
-| Cell               | Module           | Implementation     | Implementation |
-===============================================================================
-| sub_x_1            | DW01_sub         | apparch (area)     |                |
-| sub_x_2            | DW01_sub         | apparch (area)     |                |
-| add_x_3            | DW01_add         | apparch (area)     |                |
-| eq_x_4             | DW_cmp           | apparch (area)     |                |
-| sub_x_5            | DW01_sub         | apparch (area)     |                |
-| eq_x_6             | DW_cmp           | apparch (area)     |                |
-| mult_x_7           | DW_mult_tc       | pparch (area,speed)                 |
-|                    |                  | mult_arch: benc_radix4_mux          |
-| div_8              | DW_div_tc        | cla2               |                |
-| lt_x_9             | DW_cmp           | apparch (area)     |                |
-===============================================================================
-
-
-No resource sharing information to report.
- 
-****************************************
-Design : RegisterBank_WIDTH6
-****************************************
-
-No implementations to report
-
-No resource sharing information to report.
- 
-****************************************
-Design : RegisterBank_WIDTH16_0
-****************************************
-
-No implementations to report
-
-No resource sharing information to report.
- 
-****************************************
-Design : Mux4_WIDTH16_0
-****************************************
-
-No implementations to report
-
-No resource sharing information to report.
- 
-****************************************
-Design : RegisterBank_WIDTH16_1
-****************************************
-
-No implementations to report
-
-No resource sharing information to report.
- 
-****************************************
-Design : Mux4_WIDTH16_1
-****************************************
-
-No implementations to report
-1
-report_timing
- 
-****************************************
-Report : timing
-        -path full
-        -delay max
-        -max_paths 1
-Design : Top_WIDTH16
-Version: M-2016.12-SP5-5
-Date   : Wed Mar 13 11:17:55 2019
-****************************************
-
-Operating Conditions: op_cond_typ   Library: op_cond_typ
-Wire Load Model Mode: top
-
-  Startpoint: alu/clk_r_REG205_S3
-              (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: alu/clk_r_REG60_S2
-            (rising edge-triggered flip-flop clocked by clk)
-  Path Group: clk
-  Path Type: max
-
-  Point                                    Incr       Path
-  -----------------------------------------------------------
-  clock clk (rise edge)                    0.00       0.00
-  clock network delay (ideal)              2.25       2.25
-  alu/clk_r_REG205_S3/ICLK (DFRQX1)        0.00       2.25 r
-  alu/clk_r_REG205_S3/Q (DFRQX1)           5.03       7.28 r
-  alu/U1020/OUT (INX2)                     0.85       8.13 f
-  alu/U2954/OUT (NA2X1)                    0.52       8.65 r
-  alu/U1842/OUT (AND2X1)                   0.73       9.38 r
-  alu/U318/OUT (AND2X1)                    0.63      10.00 r
-  alu/U437/OUT (NA3X1)                     0.48      10.48 f
-  alu/U424/OUT (INX4)                      0.36      10.84 r
-  alu/U746/OUT (INX2)                      0.26      11.10 f
-  alu/U219/OUT (INX2)                      0.42      11.51 r
-  alu/U370/OUT (NA3X1)                     0.51      12.02 f
-  alu/U1002/OUT (INX4)                     0.35      12.37 r
-  alu/U2162/OUT (NA2X1)                    0.52      12.89 f
-  alu/U1010/OUT (INX4)                     0.43      13.32 r
-  alu/U1426/OUT (AND2X1)                   0.64      13.96 r
-  alu/U2948/OUT (NA3X1)                    0.45      14.41 f
-  alu/U2052/OUT (NA3X1)                    0.49      14.90 r
-  alu/U1187/OUT (INX1)                     0.49      15.39 f
-  alu/U849/OUT (NA3X1)                     0.38      15.76 r
-  alu/U3708/OUT (NA3X1)                    0.63      16.40 f
-  alu/U340/OUT (NA3X1)                     0.74      17.13 r
-  alu/U2056/OUT (NA2I1X1)                  0.48      17.61 f
-  alu/U2652/OUT (NO2X1)                    0.45      18.06 r
-  alu/U269/OUT (NA3I1X1)                   0.95      19.01 r
-  alu/U2630/OUT (NA3X1)                    0.60      19.61 f
-  alu/U905/OUT (AND2X1)                    0.94      20.55 f
-  alu/U260/OUT (NA3X1)                     0.38      20.93 r
-  alu/U237/OUT (NA3X1)                     0.57      21.50 f
-  alu/U733/OUT (NA3X1)                     0.50      22.00 r
-  alu/U730/OUT (NA3X1)                     0.56      22.56 f
-  alu/U324/OUT (NA2X1)                     0.67      23.23 r
-  alu/U1255/OUT (INX4)                     0.32      23.55 f
-  alu/U619/OUT (INX6)                      0.36      23.91 r
-  alu/U1155/OUT (INX8)                     0.42      24.33 f
-  alu/U575/OUT (NA3X1)                     0.54      24.87 r
-  alu/U2300/OUT (AND2X1)                   0.68      25.55 r
-  alu/U319/OUT (NA3X1)                     0.59      26.14 f
-  alu/U267/OUT (NA2X1)                     0.55      26.69 r
-  alu/U1144/OUT (INX2)                     0.39      27.08 f
-  alu/U456/OUT (NA3X1)                     0.42      27.50 r
-  alu/U845/OUT (INX2)                      0.31      27.81 f
-  alu/U235/OUT (NA3X1)                     0.39      28.20 r
-  alu/U326/OUT (NA3X1)                     0.42      28.62 f
-  alu/U1143/OUT (INX2)                     0.37      28.99 r
-  alu/U613/OUT (NA3X1)                     0.58      29.58 f
-  alu/U353/OUT (NA2X1)                     0.75      30.33 r
-  alu/U251/OUT (NA3X1)                     0.65      30.99 f
-  alu/U3215/OUT (NA3X1)                    0.55      31.54 r
-  alu/U141/OUT (INX1)                      0.50      32.04 f
-  alu/U2280/OUT (NA3X1)                    0.50      32.54 r
-  alu/U2326/OUT (NA2X1)                    0.58      33.12 f
-  alu/U3425/OUT (INX2)                     0.41      33.53 r
-  alu/U2074/OUT (INX2)                     0.33      33.86 f
-  alu/U2298/OUT (NO2X1)                    0.34      34.20 r
-  alu/U1948/OUT (NA3X1)                    0.48      34.68 f
-  alu/U830/OUT (NA3X1)                     0.70      35.38 r
-  alu/U829/OUT (NA2X1)                     0.63      36.01 f
-  alu/U616/OUT (INX4)                      0.48      36.49 r
-  alu/U1019/OUT (INX8)                     0.34      36.83 f
-  alu/U2390/OUT (NA3X1)                    0.51      37.34 r
-  alu/U2379/OUT (NA2X1)                    0.42      37.76 f
-  alu/U1359/OUT (INX2)                     0.45      38.21 r
-  alu/U2241/OUT (NA3X1)                    0.83      39.04 f
-  alu/U4835/OUT (NA2X1)                    0.80      39.84 r
-  alu/U24/OUT (INX1)                       0.72      40.56 f
-  alu/U2462/OUT (NA2X1)                    0.52      41.08 r
-  alu/U2458/OUT (NA2I1X1)                  0.43      41.52 f
-  alu/U2556/Z (EO2X1)                      1.32      42.84 f
-  alu/U2738/OUT (INX1)                     0.44      43.27 r
-  alu/clk_r_REG60_S2/D (DFRQX1)            0.00      43.27 r
-  data arrival time                                  43.27
-
-  clock clk (rise edge)                   45.00      45.00
-  clock network delay (ideal)              2.25      47.25
-  clock uncertainty                       -4.50      42.75
-  alu/clk_r_REG60_S2/ICLK (DFRQX1)         0.00      42.75 r
-  library setup time                       0.53      43.28
-  data required time                                 43.28
-  -----------------------------------------------------------
-  data required time                                 43.28
-  data arrival time                                 -43.27
-  -----------------------------------------------------------
-  slack (MET)                                         0.00
-
-
 1
 exit
 

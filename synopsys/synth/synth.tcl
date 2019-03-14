@@ -1,5 +1,5 @@
-set search_path ". ../ ../../../rtl ../libs"
-set target_library "nldm_op_cond_typ.db"
+set search_path ". ../ ../../../rtl ../../libs"
+set target_library "UofU_Digital_v1_2.db c5n_utah_std_v5_t27.db"
 set link_library "* $target_library"
 
 analyze -format sverilog {pkg/operation_pkg.sv ALU.sv Control.sv Mux4.sv OneBitAdder.sv RegisterBank.sv Top.sv}
@@ -22,33 +22,25 @@ set_load -max 1 [all_outputs]
 set_input_transition -min [expr {1*$period/100}] [remove_from_collection [all_inputs] [get_ports clk]]
 set_input_transition -max [expr {10*$period/100}] [remove_from_collection [all_inputs] [get_ports clk]]
 
+compile_ultra -no_autoungroup
+source ../reports.tcl -echo > 1_initial.log
+
 compile_ultra -no_autoungroup -gate_clock
+source ../reports.tcl -echo > 2_gate_clock.log
 
 optimize_registers
+source ../reports.tcl -echo > 3_opt_regs.log
 
 compile_ultra -incremental -gate_clock
+source ../reports.tcl -echo > 4_incremental.log
+
 optimize_netlist -area
-compile_ultra -incremental -gate_clock
-optimize_netlist -area
-compile_ultra -incremental -gate_clock
-optimize_netlist -area
+source ../reports.tcl -echo > 5_opt_netlist_area.log
 
 change_names -rule verilog
-
-analyze_datapath
 
 write_file -format ddc -hierarchy -out micro.ddc
 write_file -format verilog -hierarchy -out micro.v
 write_sdc micro.sdc
-
-report_area
-report_clock
-report_clock_gating
-report_clock_gating_check
-report_qor
-report_power
-report_constraint
-report_resources -hier
-report_timing
 
 exit

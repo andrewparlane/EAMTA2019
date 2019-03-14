@@ -1,0 +1,10 @@
+report_area
+report_clock
+report_clock_gating
+report_clock_gating_check
+report_qor
+report_power
+report_constraint
+report_resources -hier
+report_timing
+
